@@ -264,7 +264,8 @@ footer {
   .opinionsRef .opinionsRef__op--bold {
     font-size: 30px; }
   .opinionsRef .opinionsRef__text {
-    font-style: italic; }
+    font-style: italic;
+    font-size: 20px; }
 
 /*---------------------------------------------------------------*/
 /*----------------------- Page About Us -------------------------*/
