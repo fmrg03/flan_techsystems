@@ -1,0 +1,77 @@
+#header{
+    margin-left: -1%;
+    margin-right: -1%;
+        .logoHeader{
+            padding-left: 1vw;
+            width: 100px;
+        }
+        .logoHeader:hover{
+            transform: scale(1.02);
+        }
+        .navbar-brand{
+            font-size: 150%;
+        }
+        .pageNav>ul>li{
+            font-size: 30px;
+            display: inline-block;
+            padding: 0 20px;
+            border-left: 1px solid white;
+            text-shadow: 1px 1px;
+        }
+        .pageNav nav a{
+            text-decoration: none;
+            color: white;
+        }
+}
+@keyframes crecer{
+    0%{
+        font-size: 0px;
+    }
+    100%{
+        font-size: 16px;
+    }
+}
+@keyframes aparecer{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 320px){
+    #header .navbar{
+        justify-content: center;
+            .container-fluid{
+                justify-content: center;
+                    a{
+                        margin: 0px;
+                    }
+            }
+    }
+    
+}
+@media only screen and (max-width: 480px){
+    #header .navbar{
+        justify-content: center;
+            .container-fluid{
+                justify-content: center;
+            }
+    }
+
+}
+@media only screen and (min-width: 500px) and (max-width: 768px){
+    .navbar{
+        flex-wrap: nowrap;
+            .container-fluid>a{
+                display: block;}
+        }
+}
+@media only screen and (min-width: 992px) and (max-width: 1150px){
+    .navbar-expand-lg {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

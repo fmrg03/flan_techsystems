@@ -1,0 +1,39 @@
+/*----------------------- General -------------------------*/
+/*---------------------------------------------------------*/
+/*                          HTML                           */
+body{
+    background-color: lightgrey;
+    font-family: 'Patrick Hand', cursive;
+    width: 100%;
+    height: 100%;
+}
+.titlesSection{
+    font-size: 70px;
+    text-align: center;
+    color: midnightblue;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.subtitleSection{
+    font-size: 50px;
+    text-align: center;
+    color: black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.wsButton{
+    padding: 10px;
+    text-align: left;
+}
+.bg-light{
+    background-color: lightgray!important;
+    font-size: 50px;
+    border-top: 1px solid black;
+    width: 100%;
+    margin-top: 30px;
+    padding: 30px 0;
+        button{
+            font-size: 30px;
+        }
+        input{
+            font-size: 35px;
+        }
+}
