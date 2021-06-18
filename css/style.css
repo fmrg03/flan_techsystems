@@ -171,7 +171,8 @@ footer {
   .mantSlogan p {
     font-size: 250%; }
   .mantSlogan cite {
-    color: red; }
+    color: red;
+    display: block; }
   .mantSlogan figure {
     font-size: 250%;
     color: mediumblue;
