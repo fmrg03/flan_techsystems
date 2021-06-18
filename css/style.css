@@ -217,7 +217,8 @@ footer {
 /*                      Section Text Promotional 1 and 2                       */
 .imgPromot {
   width: 35%;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  opacity: 0.7; }
 
 .textPromotional .textPromotional__content {
   font-size: 35px;
