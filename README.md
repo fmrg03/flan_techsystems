@@ -19,3 +19,6 @@ The files:
 - .gitignore
 - package-lock.json
 - package.json
+
+To view the web site go to the following link:
+https://fmrg03.github.io/flan_techsystems.github.io/
