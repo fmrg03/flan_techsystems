@@ -20,5 +20,10 @@ The files:
 - package-lock.json
 - package.json
 
-To view the web site go to the following link:
+To view the website go to any of the followings links:
+
 https://fmrg03.github.io/flan_techsystems.github.io/
+
+                      or
+                      
+https://flantechsystems.000webhostapp.com/index.html
