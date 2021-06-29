@@ -1,0 +1,41 @@
+#page404{
+    margin-left: 1%;
+    margin-right: 1%;
+    color: black;
+}
+.h404{
+    text-align: center;
+    .container-fluid{
+        justify-content: center!important;
+        h1{
+            padding-left: 20px;
+        }
+    }
+}
+.section404{
+    text-align: center;
+    img{
+        display: inline-block;
+    }
+    blockquote{
+        font-size: 80px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    figcaption{
+        font-size: 50px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        color: midnightblue;
+        cite{
+            display: block;
+            font-size: 30px;
+            color: gray;
+        }
+    }
+    button{
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 30px;
+        }
+    }
+}
