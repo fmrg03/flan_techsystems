@@ -23,5 +23,3 @@ The files:
 To view the website go to any of the followings links:
 
 - https://fmrg03.github.io/flan_techsystems.github.io
-
-- https://flan-techsystems.000webhostapp.com
