@@ -70,5 +70,14 @@ footer{
         a:hover{
             transform: scale(1.01);
             color: white;
+        }
+        .idioma{
+            font-size: 25px;
+        }
+        .breadcrumb{
+            justify-content: center;
+            li{
+                font-size: 22px;
+            }
         } 
 }

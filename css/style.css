@@ -149,6 +149,12 @@ footer {
   footer a:hover {
     transform: scale(1.01);
     color: white; }
+  footer .idioma {
+    font-size: 25px; }
+  footer .breadcrumb {
+    justify-content: center; }
+    footer .breadcrumb li {
+      font-size: 22px; }
 
 /*---------------------------------------------------------------*/
 /*-------------------------- Page Home --------------------------*/
