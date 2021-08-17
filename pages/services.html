@@ -104,6 +104,137 @@
                 </div>
             </div>
         </section>
+        <section id="cotizacion" class="container-fluid rowPadding align-self-center text-center">
+            <h3>¿Deseas cotizar nuestros servicios?</h3>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#toDatosPersonales">
+                <b>Hacé Click Aquí</b>
+            </button>
+            <div class="modal fade" id="toDatosPersonales" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Datos Personales</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Nombre y Apellido:</span>
+                                    <input type="text" aria-label="First name" class="form-control" id="nombre">
+                                    <input type="text" aria-label="Last name" class="form-control" id="apellido">
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="e-mail">E-mail:</span>
+                                    <input type="email" class="form-control" name="e-mail"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                        id="email">
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                                        for="phone">Teléfono:</span>
+                                    <input type="number" class="form-control" name="phone"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                        id="telefono">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="reset" name="reset">Limpiar</button>
+                                    <button type="button" class="btn btn-dark" id="guardar"
+                                        data-bs-target="#toDatosEquipo" data-bs-toggle="modal"
+                                        data-bs-dismiss="modal">Siguiente</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal 2 -->
+            <div class="modal fade" id="toDatosEquipo" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Datos del Servicio:</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <legend>
+                                <p id="datos"></p>
+                                <ul id="listaDatos" class="text-left"></ul>
+                                <p id="datosDeEquipos"></p>
+                            </legend>
+                            <form>
+                                <label class="input-group-text computerType mb-3 espacioCuadro" id="inputGroup-sizing-sm" for="type">Tipo
+                                    de
+                                    Computadora:</label>
+                                <select class="form-select form-select-sm mb-3 espacioCuadro" name="type"
+                                    aria-label=".form-select-sm example">
+                                    <option selected>Selecciona</option>
+                                    <option value="Notebook">Notebook</option>
+                                    <option value="Desktop PC">Desktop PC</option>
+                                </select>
+                                <label class="input-group-text computerType mb-3 espacioCuadro" id="inputGroup-sizing-sm"
+                                    for="type">Servicios:</label>
+                                <div class="form-check text-left">
+                                    <input class="form-check-input" type="checkbox" value="formateo"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Formateo
+                                    </label>
+                                </div>
+                                <div class="form-check text-left">
+                                    <input class="form-check-input" type="checkbox" value="programas"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Instalación de Programas
+                                    </label>
+                                </div>
+                                <div class="form-check text-left">
+                                    <input class="form-check-input" type="checkbox" value="virus" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Virus
+                                    </label>
+                                </div>
+                                <div class="form-check text-left">
+                                    <input class="form-check-input" type="checkbox" value="revision"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label mb-3" for="flexCheckDefault">
+                                        Revisión
+                                    </label>
+                                </div>
+                                <label class="input-group-text contactMethod mb-3 espacioCuadro" id="inputGroup-sizing-sm">Método de
+                                    Contacto:</label>
+                                <div class="form-check text-left">
+                                    <input type="radio" class="form-check-input" id="checkTelefono" name="radio-stacked"
+                                        value="Telefono">
+                                    <label class="form-check-label" for="checkTelefono">Teléfono</label>
+                                </div>
+                                <div class="form-check mb-3 text-left">
+                                    <input type="radio" class="form-check-input" id="checkEmail" name="radio-stacked"
+                                        value="Email">
+                                    <label class="form-check-label" for="checkEmail">Email</label>
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="e-mail">Ingrese Cupón de Descuento:</span>
+                                    <input type="text" class="form-control" name="e-mail"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                        id="email">
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" name="textObs" placeholder="Leave a comment here"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="textObs">Observaciones</label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="reset" name="reset">Limpiar</button>
+                                    <button class="btn btn-dark" type="submit" name="send" id="enviar">Envíar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="remoteService" class="container-fluid">
             <h3>También ofrecemos servicio de soporte técnico remoto</h3>
             <div class="row rowPadding">
@@ -239,8 +370,10 @@
             <div aria-label="breadcrumb" class="idioma">
                 <b>Idioma:</b>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page"><img src="../media/espana.png" alt="españa"> Español</li>
-                    <li class="breadcrumb-item"><a href="./services_english.html"><img src="../media/estados-unidos.png" alt="eeuu"> Inglés</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><img src="../media/espana.png" alt="españa">
+                        Español</li>
+                    <li class="breadcrumb-item"><a href="./services_english.html"><img src="../media/estados-unidos.png"
+                                alt="eeuu"> Inglés</a></li>
                 </ol>
             </div>
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -252,6 +385,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>
