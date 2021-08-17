@@ -12,6 +12,9 @@ class Persona {
             this.telefono = prompt("Ingresa un número de teléfono válido:");
         }
         this.email = prompt("Ingresa un email:");
+        while(this.email.includes("@") == false){
+            this.email = prompt("Ingresa un email válido:");
+        }
         let cont=0;
         let seguir = null;
         let equipo = null;
@@ -29,8 +32,32 @@ class Persona {
         }while(seguir.toLowerCase() == "si")
     }
     datos() {
-        console.log("Hola " + this.nombreApellido + ", Bienvenido");
-        console.log("Los datos que ingresaste fueron los siguientes:\n- Nombre y Apellido: " + this.nombreApellido + "\n- Telefono: " + this.telefono + "\n- email: " + this.email + "\n- Tipo de Computadoras: " + this.tipoPC.join(", "));
+        document.getElementById("bienvenida").innerHTML = ("Bienvenido " + this.nombreApellido);
+        document.getElementById("datos").innerHTML = ("Los datos que ingresaste fueron los siguientes: ");
+        const ulDatos = document.getElementById("listaDatos");
+        let cont = 0;
+        for(const datoDeObjeto in persona1){
+            const liDatos = document.createElement("li");
+            switch(cont){
+                case 0:
+                    liDatos.innerHTML = (`<strong>Nombre y Apellido: </strong>` + persona1[datoDeObjeto]);
+                    ulDatos.appendChild(liDatos);
+                    break;
+                case 1:
+                    liDatos.innerHTML = (`<strong>Teléfono: </strong>` + persona1[datoDeObjeto]);
+                    ulDatos.appendChild(liDatos);
+                    break;
+                case 2:
+                    liDatos.innerHTML = (`<strong>Email: </strong>` + persona1[datoDeObjeto]);
+                    ulDatos.appendChild(liDatos);
+                    break;
+                case 3:
+                    liDatos.innerHTML = (`<strong>Equipos: </strong>` + persona1[datoDeObjeto].join(", "));
+                    ulDatos.appendChild(liDatos);
+                    break;
+            }
+            cont++;
+        }
     }
 }
 class Servicio {
@@ -92,7 +119,9 @@ class Cotización{
         this.totalFinal = totalFinal;
     }
     resultado(){
-        console.log(this.nombreApellido + ", los servicios cotizados para el equipo " + this.equipo + " fueron los siguientes:\n" + this.servicios + "\nY el total Cotizado es: " + this.totalFinal + " ARS");
+        const parrafoCotizados = document.createElement("p");
+        parrafoCotizados.innerHTML = (this.nombreApellido + ", los servicios cotizados para el equipo " + this.equipo + " fueron los siguientes: " + this.servicios + ". Y el total Cotizado es: " + this.totalFinal + " ARS");
+        document.body.appendChild(parrafoCotizados);
     }
 }
 function suma(n1) {
