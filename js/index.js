@@ -1,11 +1,8 @@
 function existeListaUsuarios() {
-
     let existe = false;
-
     if (localStorage.getItem("Usuarios") != null) {
         existe = true;
     }
-
     return existe;
 }
 
@@ -31,7 +28,6 @@ class Persona {
 }
 
 function cargarUsuario(usuarioACargar) {
-
     const arrayDeStorage = obtenerUsuarios();
     arrayDeStorage.push(usuarioACargar);
     guardarUsuarios(arrayDeStorage);
@@ -54,14 +50,15 @@ function mostrarDatosPersonales() {
     liDatos3.innerHTML = (`<strong>Email: </strong>` + email.value);
     ulDatos.appendChild(liDatos3);
     document.getElementById("datosDeEquipos").innerHTML = ("Por Favor llena el siguiente formulario con la información correspondiente:");
+    const parrafoDatosPersonales = document.getElementById("datosPersonales");
+    parrafoDatosPersonales.innerHTML = (`<p><strong>- Cliente: </strong>` + nombre.value + " " + apellido.value + `</p>` + `<p><strong>- Teléfono: </strong>` + telefono.value + `</p>` + `<p><strong>- Email: </strong>` + email.value + `</p>`);
 }
 
-function clickGuardar() {
+function clickGuardarYSiguiente() {
 
     if (!existeListaUsuarios()) {
         crearListaUsuarios();
     }
-
     const nombre = document.getElementById("nombre");
     const apellido = document.getElementById("apellido");
     const email = document.getElementById("email");
@@ -77,13 +74,9 @@ function clickGuardar() {
     cargarUsuario(nuevoUsuario);
 }
 
-const botonGuardar = document.getElementById("guardar");
-botonGuardar.addEventListener("click", clickGuardar);
-
-/*
 class Servicio {
-    constructor(nombre, precio, horas, total) {
-        this.nombre = nombre;
+    constructor(nombreServicio, precio, horas, total) {
+        this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.horas = horas;
         this.total = total;
@@ -93,45 +86,171 @@ class Servicio {
         this.total = this.total * 1.21;
     }
 }
-class Cupon {
+
+function obtenerDatosServicio() {
+    const formateo = document.getElementById("checkFormateo");
+    if (formateo.checked == true) {
+        serviciosJuntos.push(formateo.value);
+    }
+    const programas = document.getElementById("checkProgramas");
+    if (programas.checked == true) {
+        serviciosJuntos.push(programas.value);
+    }
+    const virus = document.getElementById("checkVirus");
+    if (virus.checked == true) {
+        serviciosJuntos.push(virus.value);
+    }
+    const revision = document.getElementById("checkRevision");
+    if (revision.checked == true) {
+        serviciosJuntos.push(revision.value);
+    }
+}
+
+function suma(n1) {
+    final += n1;
+}
+
+function calculoValorServicios(equipoAArreglar) {
+let i = 0;
+i = serviciosJuntos.length;
+for (f = 0; f < serviciosJuntos.length; f++) {
+    switch (serviciosJuntos[f]) {
+        case "Formateo":
+            const formateo = new Servicio(serviciosJuntos[f], 200, 8, 0)
+            formateo.final()
+            suma(formateo.total);
+            break;
+        case "Instalación de Programas":
+            const programas = new Servicio(serviciosJuntos[f], 180, 4, 0)
+            programas.final()
+            suma(programas.total);
+            break;
+        case "Limpieza de  Virus":
+            const virus = new Servicio(serviciosJuntos[f], 150, 2, 0)
+            virus.final()
+            suma(virus.total);
+            break;
+        case "Revisión":
+            const revision = new Servicio(serviciosJuntos[f], 120, 2, 0)
+            revision.final()
+            suma(revision.total);
+            break;
+    }
+}
+const parrafoDatosEquipo = document.getElementById("datosEquipo"); 
+parrafoDatosEquipo.innerHTML = (`<p><strong>- Equipo: </strong>` + equipoAArreglar + `</p>`+ `<p><strong>- Servicios: </strong>` +serviciosJuntos.join(", ") + `</p>`);
+}
+
+function obtenerDatosEquipo() {
+    const equipoSeleccionado = document.getElementById("tipoDeComputadora").options[document.getElementById('tipoDeComputadora').selectedIndex].value;
+    return equipoSeleccionado;
+}
+
+function metodoDeContacto() {
+    let viaDeContacto = null;
+    const contactoTelefono = document.getElementById("checkTelefono");
+    if (contactoTelefono.checked == true) {
+        viaDeContacto = contactoTelefono.value;
+    }
+    const contactoEmail = document.getElementById("checkEmail");
+    if (contactoEmail.checked == true) {
+        viaDeContacto = contactoEmail.value;
+    }
+    return viaDeContacto;
+}
+
+class Cotizacion {
     constructor(cupon, totalPagar) {
         this.cupon = cupon;
         this.totalPagar = totalPagar;
     }
     descuento() {
+        console.log(this.totalPagar)
         const desct = (a, b) => a * b;
+        let nombreCupon = null;
         let porct = 0;
         switch (this.cupon) {
             case "DCTO10":
                 porct = 0.9
+                nombreCupon = "10%";
                 dct = desct(this.totalPagar, porct);
-                console.log("Ingresaste un Cupón de descuento de 10%")
                 break;
             case "DCTO20":
                 porct = 0.8
+                nombreCupon = "20%";
                 dct = desct(this.totalPagar, porct);
-                console.log("Ingresaste un Cupón de descuento de 20%")
                 break;
             case "DCTO30":
                 porct = 0.7
+                nombreCupon = "30%";
                 dct = desct(this.totalPagar, porct);
-                console.log("Ingresaste un Cupón de descuento de 30%")
                 break;
             default:
                 break;
         }
+        return nombreCupon;
     }
-    subtotal() {
+    subtotal(nombreCupon, contacto) {
         if (dct != null) {
-            console.log("El total a pagar con el IVA incluido y el descuento por cupón aplicado es: " + dct + " ARS")
+            const parrafoCotizados = document.getElementById("costoServicio");
+            parrafoCotizados.innerHTML = (`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ` + nombreCupon + ` es: ` + `<strong>` + dct + `</strong>` + ` ARS</p>`);
         }
         else {
-            console.log("El total a pagar con el IVA incluido: " + totalPagar + " ARS")
+            const parrafoCotizados = document.getElementById("costoServicio");
+            parrafoCotizados.innerHTML = (`<p>El total a pagar con el IVA incluido es: ` + `<strong>` + this.totalPagar + `</strong>` + ` ARS</p>`);
         }
+        const parrafoMetodoContacto = document.getElementById("contactoMetodo");
+        parrafoMetodoContacto.innerHTML = (`<p>Te estaremos contactando vía ` + contacto + ` ... ¡Muchas gracias!</p>`);
         console.log("Te estaremos contactando vía email y telefónicamente... ¡Muchas gracias!")
     }
-
 }
+
+function cuponDescuento(contMet) {
+    const cuponIngresado = document.getElementById("cupon");
+    const cotizacionFinal = new Cotizacion(cuponIngresado.value, final);
+    nombCup = cotizacionFinal.descuento();
+    cotizacionFinal.subtotal(nombCup, contMet);
+}
+
+function textoObservaciones() {
+    const observaciones = document.getElementById("observaciones").value;
+    if(observaciones.length != 0){
+        const parrafoObservaciones = document.getElementById("observacionesCliente");
+        parrafoObservaciones.innerHTML = (`<p><strong>Observaciones: </strong>` + observaciones + `</p>`);
+    }
+}
+
+function clickYEnviar() {
+    let equipo = obtenerDatosEquipo();
+    obtenerDatosServicio();
+    calculoValorServicios(equipo);
+    contMet = metodoDeContacto();
+    cuponDescuento(contMet);
+    textoObservaciones();
+}
+
+
+
+const serviciosJuntos = [];
+let final = 0;
+let dct = null;
+const botonGuardar = document.getElementById("guardar");
+botonGuardar.addEventListener("click", clickGuardarYSiguiente);
+const botonEnviar = document.getElementById("enviar");
+botonEnviar.addEventListener("click", clickYEnviar);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Cotización {
     constructor(nombreApellido, equipo, servicios, totalFinal) {
         this.nombreApellido = nombreApellido;
@@ -145,73 +264,17 @@ class Cotización {
         document.body.appendChild(parrafoCotizados);
     }
 }
-function suma(n1) {
-    final += n1;
-}
 
+const cotiFinal = new Cotización(nuevoUsuario.nombreApellido, nuevoUsuario.tipoPC[f], serviciosJuntos.join(", "), final);
+cotiFinal.resultado();
+serviciosJuntos.length = 0;
+totalPagar += final;
 let final = 0;
 mostrarDatosPersonales()
 const serviciosJuntos = [];
 let totalPagar = 0;
 let seguir = null;
-for (f = 0; f < i; f++) {
-    cont = 0;
-    do {
-        let nombreServicio = parseInt(prompt("Ingrese el número del servicio que deseas cotizar para el equipo " + persona1.tipoPC[f] + " ==> 1- Formateo | 2- Instalacion de Programas | 3- Virus | 4- Revisión:"));
-        switch (nombreServicio) {
-            case 1:
-                nombreServicio = "Formateo";
-                const formateo = new Servicio(nombreServicio, 200, 8, 0)
-                formateo.final()
-                suma(formateo.total);
-                serviciosJuntos.push(nombreServicio);
-                break;
-            case 2:
-                nombreServicio = "Instalación de Programas";
-                const programas = new Servicio(nombreServicio, 180, 4, 0)
-                programas.final()
-                suma(programas.total);
-                serviciosJuntos.push(nombreServicio);
-                break;
-            case 3:
-                nombreServicio = "Limpieza de  Virus";
-                const virus = new Servicio(nombreServicio, 150, 2, 0)
-                virus.final()
-                suma(virus.total);
-                serviciosJuntos.push(nombreServicio);
-                break;
-            case 4:
-                nombreServicio = "Revisión";
-                const revision = new Servicio(nombreServicio, 120, 2, 0)
-                revision.final()
-                suma(revision.total);
-                serviciosJuntos.push(nombreServicio);
-                break;
-            default:
-                while (isNaN(nombreServicio) || (nombreServicio > 4) || (nombreServicio < 1)) {
-                    nombreServicio = prompt("Ingrese un número válido del servicio que deseas cotizar para el equipo " + persona1.tipoPC[f] + " ==> 1- Formateo | 2- Instalacion de Programas | 3- Virus | 4- Revisión:");
-                }
-                break;
-        }
-        cont++;
-        seguir = prompt("¿Desea cotizar otro servicio para el equipo " + persona1.tipoPC[f] + "?");
-    } while (seguir.toLowerCase() == "si")
-    const cotiFinal = new Cotización(persona1.nombreApellido, persona1.tipoPC[f], serviciosJuntos.join(", "), final);
-    cotiFinal.resultado();
-    serviciosJuntos.length = 0;
-    totalPagar += final;
-    final = 0;
-}
-function ejecutarClick() {
-
-    const botonGuardar = document.getElementById("guardar");
-    botonGuardar.addEventListener("click", validarDatos);
-    botonGuardar.addEventListener("click", consolelog);
-}
-
-let cupon = prompt("¿Tiene algún cupón de descuento? Ingreselo (DCTO10, DCTO20 o DCTO30) o deje el espacio en blanco y presione aceptar");
 const cup = new Cupon(cupon, totalPagar);
 let dct = null;
 cup.descuento();
-cup.subtotal();
-*/
+cup.subtotal();*/

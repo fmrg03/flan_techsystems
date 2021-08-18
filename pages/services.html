@@ -164,49 +164,52 @@
                                 <p id="datosDeEquipos"></p>
                             </legend>
                             <form>
-                                <label class="input-group-text computerType mb-3 espacioCuadro" id="inputGroup-sizing-sm" for="type">Tipo
+                                <label class="input-group-text computerType mb-3 espacioCuadro"
+                                    id="inputGroup-sizing-sm" for="type">Tipo
                                     de
                                     Computadora:</label>
                                 <select class="form-select form-select-sm mb-3 espacioCuadro" name="type"
-                                    aria-label=".form-select-sm example">
+                                    aria-label=".form-select-sm example" id="tipoDeComputadora">
                                     <option selected>Selecciona</option>
-                                    <option value="Notebook">Notebook</option>
-                                    <option value="Desktop PC">Desktop PC</option>
+                                    <option value="Notebook" id="tipoNotebook">Notebook</option>
+                                    <option value="Desktop PC" id="tipoDesktop">Desktop PC</option>
                                 </select>
-                                <label class="input-group-text computerType mb-3 espacioCuadro" id="inputGroup-sizing-sm"
-                                    for="type">Servicios:</label>
+                                <label class="input-group-text computerType mb-3 espacioCuadro"
+                                    id="inputGroup-sizing-sm" for="type">Servicios:</label>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input" type="checkbox" value="formateo"
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" name="servicio1" value="Formateo"
+                                        id="checkFormateo">
+                                    <label class="form-check-label" for="checkFormateo">
                                         Formateo
                                     </label>
                                 </div>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input" type="checkbox" value="programas"
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" name="servicio2"
+                                        value="Instalación de Programas" id="checkProgramas">
+                                    <label class="form-check-label" for="checkProgramas">
                                         Instalación de Programas
                                     </label>
                                 </div>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input" type="checkbox" value="virus" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" name="servicio3" value="Virus"
+                                        id="checkVirus">
+                                    <label class="form-check-label" for="checkVirus">
                                         Virus
                                     </label>
                                 </div>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input" type="checkbox" value="revision"
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label mb-3" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" name="servicio4" value="Revisión"
+                                        id="checkRevision">
+                                    <label class="form-check-label mb-3" for="checkRevision">
                                         Revisión
                                     </label>
                                 </div>
-                                <label class="input-group-text contactMethod mb-3 espacioCuadro" id="inputGroup-sizing-sm">Método de
+                                <label class="input-group-text contactMethod mb-3 espacioCuadro"
+                                    id="inputGroup-sizing-sm">Método de
                                     Contacto:</label>
                                 <div class="form-check text-left">
                                     <input type="radio" class="form-check-input" id="checkTelefono" name="radio-stacked"
-                                        value="Telefono">
+                                        value="Telefónica">
                                     <label class="form-check-label" for="checkTelefono">Teléfono</label>
                                 </div>
                                 <div class="form-check mb-3 text-left">
@@ -215,21 +218,43 @@
                                     <label class="form-check-label" for="checkEmail">Email</label>
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="e-mail">Ingrese Cupón de Descuento:</span>
-                                    <input type="text" class="form-control" name="e-mail"
+                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="cupon">Ingrese Cupón
+                                        de Descuento:</span>
+                                    <input type="text" class="form-control" name="cupon"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-                                        id="email">
+                                        id="cupon">
                                 </div>
                                 <div class="form-floating">
-                                    <textarea class="form-control" name="textObs" placeholder="Leave a comment here"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <textarea class="form-control" name="textObs" id="observaciones"
+                                        style="height: 100px"></textarea>
                                     <label for="textObs">Observaciones</label>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="reset" name="reset">Limpiar</button>
-                                    <button class="btn btn-dark" type="submit" name="send" id="enviar">Envíar</button>
+                                    <button class="btn btn-dark" data-bs-target="#mostrarResultados" name="send"
+                                        id="enviar" data-bs-toggle="modal" data-bs-dismiss="modal">Enviar</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="mostrarResultados" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalToggleLabel2">Cotización</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div id="datosPersonales"></div>
+                                <div id="datosEquipo"></div>
+                                <div id="costoServicio"></div>
+                                <div id="observacionesCliente"></div>
+                                <div id="contactoMetodo"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
