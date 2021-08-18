@@ -137,7 +137,10 @@ for (f = 0; f < serviciosJuntos.length; f++) {
             break;
     }
 }
-const parrafoDatosEquipo = document.getElementById("datosEquipo"); 
+const parrafoDatosEquipo = document.getElementById("datosEquipo");
+if(equipoAArreglar == "Selecciona"){
+    equipoAArreglar = " ";
+}
 parrafoDatosEquipo.innerHTML = (`<p><strong>- Equipo: </strong>` + equipoAArreglar + `</p>`+ `<p><strong>- Servicios: </strong>` +serviciosJuntos.join(", ") + `</p>`);
 }
 
@@ -165,7 +168,6 @@ class Cotizacion {
         this.totalPagar = totalPagar;
     }
     descuento() {
-        console.log(this.totalPagar)
         const desct = (a, b) => a * b;
         let nombreCupon = null;
         let porct = 0;
@@ -201,7 +203,6 @@ class Cotizacion {
         }
         const parrafoMetodoContacto = document.getElementById("contactoMetodo");
         parrafoMetodoContacto.innerHTML = (`<p>Te estaremos contactando vía ` + contacto + ` ... ¡Muchas gracias!</p>`);
-        console.log("Te estaremos contactando vía email y telefónicamente... ¡Muchas gracias!")
     }
 }
 

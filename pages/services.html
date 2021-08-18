@@ -104,7 +104,7 @@
                 </div>
             </div>
         </section>
-        <section id="cotizacion" class="container-fluid rowPadding align-self-center text-center">
+        <section id="cotizacion" class="container-fluid align-self-center text-center">
             <h3>¿Deseas cotizar nuestros servicios?</h3>
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#toDatosPersonales">
                 <b>Hacé Click Aquí</b>
@@ -232,35 +232,36 @@
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="reset" name="reset">Limpiar</button>
                                     <button class="btn btn-dark" data-bs-target="#mostrarResultados" name="send"
-                                        id="enviar" data-bs-toggle="modal" data-bs-dismiss="modal">Enviar</button>
+                                        id="enviar" data-bs-toggle="modal" data-bs-dismiss="modal"
+                                        type="reset">Enviar</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="mostrarResultados" aria-hidden="true"
-                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal -->
+            <div class="modal fade" id="mostrarResultados" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalToggleLabel2">Cotización</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-header justify-content-center">
+                            <h2 class="modal-title subtitleSection" id="staticBackdropLabel">Cotización</h2>
                         </div>
                         <div class="modal-body">
-                            <div>
-                                <div id="datosPersonales"></div>
-                                <div id="datosEquipo"></div>
-                                <div id="costoServicio"></div>
-                                <div id="observacionesCliente"></div>
-                                <div id="contactoMetodo"></div>
-                            </div>
+                            <div id="datosPersonales"></div>
+                            <div id="datosEquipo"></div>
+                            <div id="costoServicio"></div>
+                            <div id="observacionesCliente"></div>
+                            <div id="contactoMetodo"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark"><a href="">Cerrar</a></button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section id="remoteService" class="container-fluid">
+        <section id="remoteService" class="container-fluid rowPadding2">
             <h3>También ofrecemos servicio de soporte técnico remoto</h3>
             <div class="row rowPadding">
                 <div class="col-sm-12 col-md-12 col-xxl-12 align-self-center text-center">
