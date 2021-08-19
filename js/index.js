@@ -22,6 +22,7 @@ class Persona {
     constructor(usuarioNuevo) {
         this.nombre = usuarioNuevo.nombre;
         this.apellido = usuarioNuevo.apellido;
+        this.dni = usuarioNuevo.dni;
         this.telefono = usuarioNuevo.telefono;
         this.email = usuarioNuevo.email;
     }
@@ -29,8 +30,20 @@ class Persona {
 
 function cargarUsuario(usuarioACargar) {
     const arrayDeStorage = obtenerUsuarios();
-    arrayDeStorage.push(usuarioACargar);
-    guardarUsuarios(arrayDeStorage);
+    const dniIngresado = usuarioACargar["dni"];
+    let marcador = null;
+    for (const contenidoArrayStorage of arrayDeStorage){
+        for(const usuarioDeStorage in contenidoArrayStorage){
+            if(contenidoArrayStorage[usuarioDeStorage] == dniIngresado){
+                marcador = "existe";
+                break;
+            }
+        }
+    }
+    if(marcador != "existe"){
+        arrayDeStorage.push(usuarioACargar);
+        guardarUsuarios(arrayDeStorage);
+    }
 }
 
 function mostrarDatosPersonales() {
@@ -38,40 +51,24 @@ function mostrarDatosPersonales() {
     const ulDatos = document.getElementById("listaDatos");
     const nombre = document.getElementById("nombre");
     const apellido = document.getElementById("apellido");
-    const email = document.getElementById("email");
+    const dni = document.getElementById("dni");
     const telefono = document.getElementById("telefono");
+    const email = document.getElementById("email");
     const liDatos1 = document.createElement("li");
     liDatos1.innerHTML = (`<strong>Nombre y Apellido: </strong>` + nombre.value + " " + apellido.value);
     ulDatos.appendChild(liDatos1);
     const liDatos2 = document.createElement("li");
-    liDatos2.innerHTML = (`<strong>Teléfono: </strong>` + telefono.value);
+    liDatos2.innerHTML = (`<strong>DNI: </strong>` + dni.value);
     ulDatos.appendChild(liDatos2);
     const liDatos3 = document.createElement("li");
-    liDatos3.innerHTML = (`<strong>Email: </strong>` + email.value);
+    liDatos3.innerHTML = (`<strong>Teléfono: </strong>` + telefono.value);
     ulDatos.appendChild(liDatos3);
+    const liDatos4 = document.createElement("li");
+    liDatos4.innerHTML = (`<strong>Email: </strong>` + email.value);
+    ulDatos.appendChild(liDatos4);
     document.getElementById("datosDeEquipos").innerHTML = ("Por Favor llena el siguiente formulario con la información correspondiente:");
     const parrafoDatosPersonales = document.getElementById("datosPersonales");
-    parrafoDatosPersonales.innerHTML = (`<p><strong>- Cliente: </strong>` + nombre.value + " " + apellido.value + `</p>` + `<p><strong>- Teléfono: </strong>` + telefono.value + `</p>` + `<p><strong>- Email: </strong>` + email.value + `</p>`);
-}
-
-function clickGuardarYSiguiente() {
-
-    if (!existeListaUsuarios()) {
-        crearListaUsuarios();
-    }
-    const nombre = document.getElementById("nombre");
-    const apellido = document.getElementById("apellido");
-    const email = document.getElementById("email");
-    const telefono = document.getElementById("telefono");
-
-    const nuevoUsuario = new Persona({
-        nombre: nombre.value,
-        apellido: apellido.value,
-        telefono: telefono.value,
-        email: email.value
-    });
-    mostrarDatosPersonales();
-    cargarUsuario(nuevoUsuario);
+    parrafoDatosPersonales.innerHTML = (`<p><strong>- Cliente: </strong>` + nombre.value + " " + apellido.value + `</p>` + `<p><strong>- DNI: </strong>` + dni.value + `</p>` + `<p><strong>- Teléfono: </strong>` + telefono.value + `</p>` + `<p><strong>- Email: </strong>` + email.value + `</p>`);
 }
 
 class Servicio {
@@ -219,6 +216,28 @@ function textoObservaciones() {
         const parrafoObservaciones = document.getElementById("observacionesCliente");
         parrafoObservaciones.innerHTML = (`<p><strong>Observaciones: </strong>` + observaciones + `</p>`);
     }
+}
+
+function clickGuardarYSiguiente() {
+
+    if (!existeListaUsuarios()) {
+        crearListaUsuarios();
+    }
+    const nombre = document.getElementById("nombre");
+    const apellido = document.getElementById("apellido");
+    const dni = document.getElementById("dni");
+    const email = document.getElementById("email");
+    const telefono = document.getElementById("telefono");
+    
+    const nuevoUsuario = new Persona({
+        nombre: nombre.value,
+        apellido: apellido.value,
+        dni: dni.value,
+        telefono: telefono.value,
+        email: email.value
+    });
+    mostrarDatosPersonales();
+    cargarUsuario(nuevoUsuario);
 }
 
 function clickYEnviar() {
