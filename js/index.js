@@ -32,43 +32,38 @@ function cargarUsuario(usuarioACargar) {
     const arrayDeStorage = obtenerUsuarios();
     const dniIngresado = usuarioACargar["dni"];
     let marcador = null;
-    for (const contenidoArrayStorage of arrayDeStorage){
-        for(const usuarioDeStorage in contenidoArrayStorage){
-            if(contenidoArrayStorage[usuarioDeStorage] == dniIngresado){
+    for (const contenidoArrayStorage of arrayDeStorage) {
+        for (const usuarioDeStorage in contenidoArrayStorage) {
+            if (contenidoArrayStorage[usuarioDeStorage] == dniIngresado) {
                 marcador = "existe";
                 break;
             }
         }
     }
-    if(marcador != "existe"){
+    if (marcador != "existe") {
         arrayDeStorage.push(usuarioACargar);
         guardarUsuarios(arrayDeStorage);
     }
 }
 
 function mostrarDatosPersonales() {
-    document.getElementById("datos").innerHTML = ("Los Datos que ingresaste fueron los siguientes: ");
-    const ulDatos = document.getElementById("listaDatos");
-    const nombre = document.getElementById("nombre");
-    const apellido = document.getElementById("apellido");
-    const dni = document.getElementById("dni");
-    const telefono = document.getElementById("telefono");
-    const email = document.getElementById("email");
-    const liDatos1 = document.createElement("li");
-    liDatos1.innerHTML = (`<strong>Nombre y Apellido: </strong>` + nombre.value + " " + apellido.value);
-    ulDatos.appendChild(liDatos1);
-    const liDatos2 = document.createElement("li");
-    liDatos2.innerHTML = (`<strong>DNI: </strong>` + dni.value);
-    ulDatos.appendChild(liDatos2);
-    const liDatos3 = document.createElement("li");
-    liDatos3.innerHTML = (`<strong>Teléfono: </strong>` + telefono.value);
-    ulDatos.appendChild(liDatos3);
-    const liDatos4 = document.createElement("li");
-    liDatos4.innerHTML = (`<strong>Email: </strong>` + email.value);
-    ulDatos.appendChild(liDatos4);
-    document.getElementById("datosDeEquipos").innerHTML = ("Por Favor llena el siguiente formulario con la información correspondiente:");
-    const parrafoDatosPersonales = document.getElementById("datosPersonales");
-    parrafoDatosPersonales.innerHTML = (`<p><strong>- Cliente: </strong>` + nombre.value + " " + apellido.value + `</p>` + `<p><strong>- DNI: </strong>` + dni.value + `</p>` + `<p><strong>- Teléfono: </strong>` + telefono.value + `</p>` + `<p><strong>- Email: </strong>` + email.value + `</p>`);
+    $("#datos").text("Los Datos que ingresaste fueron los siguientes: ");
+    const ulDatos = $("#listaDatos");
+    const nombre = $("#nombre");
+    const apellido = $("#apellido");
+    const dni = $("#dni");
+    const telefono = $("#telefono");
+    const email = $("#email");
+    a = nombre.length;
+    ulDatos.append(`<li><strong>Nombre y Apellido: </strong> ${nombre.val()} ${apellido.val()}</li>`);
+    ulDatos.append(`<li><strong>DNI: </strong>${dni.val()}</li>`);
+    ulDatos.append(`<li><strong>Teléfono: </strong>${telefono.val()}</li>`);
+    ulDatos.append(`<li><strong>Email: </strong>${email.val()}</li>`);
+    $("#datosDeEquipos").text("Por Favor llena el siguiente formulario con la información correspondiente:");
+    $("#datosPersonales").html(`<p><strong>- Cliente: </strong>${nombre.val()} ${apellido.val()}</p>
+    <p><strong>- DNI: </strong>${dni.val()}</p>
+    <p><strong>- Teléfono: </strong>${telefono.val()}</p>
+    <p><strong>- Email: </strong>${email.val()}</p>`);
 }
 
 class Servicio {
@@ -85,21 +80,17 @@ class Servicio {
 }
 
 function obtenerDatosServicio() {
-    const formateo = document.getElementById("checkFormateo");
-    if (formateo.checked == true) {
-        serviciosJuntos.push(formateo.value);
+    if ($("#checkFormateo").prop('checked') == true) {
+        serviciosJuntos.push($("#checkFormateo").val());
     }
-    const programas = document.getElementById("checkProgramas");
-    if (programas.checked == true) {
-        serviciosJuntos.push(programas.value);
+    if ($("#checkProgramas").prop('checked') == true) {
+        serviciosJuntos.push($("#checkProgramas").val());
     }
-    const virus = document.getElementById("checkVirus");
-    if (virus.checked == true) {
-        serviciosJuntos.push(virus.value);
+    if ($("#checkVirus").prop('checked') == true) {
+        serviciosJuntos.push($("#checkVirus").val());
     }
-    const revision = document.getElementById("checkRevision");
-    if (revision.checked == true) {
-        serviciosJuntos.push(revision.value);
+    if ($("#checkRevision").prop('checked') == true) {
+        serviciosJuntos.push($("#checkRevision").val());
     }
 }
 
@@ -108,53 +99,52 @@ function suma(n1) {
 }
 
 function calculoValorServicios(equipoAArreglar) {
-let i = 0;
-i = serviciosJuntos.length;
-for (f = 0; f < serviciosJuntos.length; f++) {
-    switch (serviciosJuntos[f]) {
-        case "Formateo":
-            const formateo = new Servicio(serviciosJuntos[f], 200, 8, 0)
-            formateo.final()
-            suma(formateo.total);
-            break;
-        case "Instalación de Programas":
-            const programas = new Servicio(serviciosJuntos[f], 180, 4, 0)
-            programas.final()
-            suma(programas.total);
-            break;
-        case "Limpieza de  Virus":
-            const virus = new Servicio(serviciosJuntos[f], 150, 2, 0)
-            virus.final()
-            suma(virus.total);
-            break;
-        case "Revisión":
-            const revision = new Servicio(serviciosJuntos[f], 120, 2, 0)
-            revision.final()
-            suma(revision.total);
-            break;
+    let i = 0;
+    i = serviciosJuntos.length;
+    for (f = 0; f < serviciosJuntos.length; f++) {
+        switch (serviciosJuntos[f]) {
+            case "Formateo":
+                const formateo = new Servicio(serviciosJuntos[f], 200, 8, 0)
+                formateo.final()
+                suma(formateo.total);
+                break;
+            case "Instalación de Programas":
+                const programas = new Servicio(serviciosJuntos[f], 180, 4, 0)
+                programas.final()
+                suma(programas.total);
+                break;
+            case "Limpieza de Virus":
+                const virus = new Servicio(serviciosJuntos[f], 150, 2, 0)
+                virus.final()
+                suma(virus.total);
+                break;
+            case "Revisión":
+                const revision = new Servicio(serviciosJuntos[f], 120, 2, 0)
+                revision.final()
+                suma(revision.total);
+                break;
+        }
     }
-}
-const parrafoDatosEquipo = document.getElementById("datosEquipo");
-if(equipoAArreglar == "Selecciona"){
-    equipoAArreglar = " ";
-}
-parrafoDatosEquipo.innerHTML = (`<p><strong>- Equipo: </strong>` + equipoAArreglar + `</p>`+ `<p><strong>- Servicios: </strong>` +serviciosJuntos.join(", ") + `</p>`);
+    const parrafoDatosEquipo = $("#datosEquipo");
+    if (equipoAArreglar == "Selecciona") {
+        equipoAArreglar = " ";
+    }
+    parrafoDatosEquipo.html(`<p><strong>- Equipo: </strong>${equipoAArreglar}</p>
+<p><strong>- Servicios: </strong>${serviciosJuntos.join(", ")}</p>`);
 }
 
 function obtenerDatosEquipo() {
-    const equipoSeleccionado = document.getElementById("tipoDeComputadora").options[document.getElementById('tipoDeComputadora').selectedIndex].value;
+    const equipoSeleccionado = $("#tipoDeComputadora option:selected").val();
     return equipoSeleccionado;
 }
 
 function metodoDeContacto() {
     let viaDeContacto = null;
-    const contactoTelefono = document.getElementById("checkTelefono");
-    if (contactoTelefono.checked == true) {
-        viaDeContacto = contactoTelefono.value;
+    if ($("#checkTelefono").prop('checked') == true) {
+        viaDeContacto = $("#checkTelefono").val();
     }
-    const contactoEmail = document.getElementById("checkEmail");
-    if (contactoEmail.checked == true) {
-        viaDeContacto = contactoEmail.value;
+    if ($("#checkEmail").prop('checked') == true) {
+        viaDeContacto = $("#checkEmail").val();
     }
     return viaDeContacto;
 }
@@ -191,70 +181,132 @@ class Cotizacion {
     }
     subtotal(nombreCupon, contacto) {
         if (dct != null) {
-            const parrafoCotizados = document.getElementById("costoServicio");
-            parrafoCotizados.innerHTML = (`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ` + nombreCupon + ` es: ` + `<strong>` + dct + `</strong>` + ` ARS</p>`);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ${nombreCupon} es: <strong>${dct}</strong> ARS</p>`);
         }
         else {
-            const parrafoCotizados = document.getElementById("costoServicio");
-            parrafoCotizados.innerHTML = (`<p>El total a pagar con el IVA incluido es: ` + `<strong>` + this.totalPagar + `</strong>` + ` ARS</p>`);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido es: <strong>${this.totalPagar}</strong> ARS</p>`);
         }
-        const parrafoMetodoContacto = document.getElementById("contactoMetodo");
-        parrafoMetodoContacto.innerHTML = (`<p>Te estaremos contactando vía ` + contacto + ` ... ¡Muchas gracias!</p>`);
+        $("#contactoMetodo").html(`<p>Te estaremos contactando vía ${contacto}... ¡Muchas gracias!</p>`);
     }
 }
 
 function cuponDescuento(contMet) {
-    const cuponIngresado = document.getElementById("cupon");
-    const cotizacionFinal = new Cotizacion(cuponIngresado.value, final);
+    const cuponIngresado = $("#cupon").val();
+    const cotizacionFinal = new Cotizacion(cuponIngresado, final);
     nombCup = cotizacionFinal.descuento();
     cotizacionFinal.subtotal(nombCup, contMet);
 }
 
 function textoObservaciones() {
-    const observaciones = document.getElementById("observaciones").value;
-    if(observaciones.length != 0){
-        const parrafoObservaciones = document.getElementById("observacionesCliente");
-        parrafoObservaciones.innerHTML = (`<p><strong>Observaciones: </strong>` + observaciones + `</p>`);
+    const observaciones = $("#observaciones").val();
+    if (observaciones.length != 0) {
+        $("#observacionesCliente").html(`<p><strong>Observaciones: </strong>${observaciones}</p>`);
     }
 }
 
-function clickGuardarYSiguiente() {
+const serviciosJuntos = [];
+let final = 0;
+let dct = null;
+let seguir = 0;
+$(".unica").mouseenter(function () {
+    const nombre = $("#nombre");
+    const apellido = $("#apellido");
+    const dni = $("#dni");
+    const email = $("#email");
+    const telefono = $("#telefono");
 
+    if ((nombre.val().length != 0) && (apellido.val().length != 0) && (dni.val().length != 0) && (email.val().length != 0) && (telefono.val().length != 0)) {
+        $(".unica").attr({
+            "data-bs-target": "#toDatosEquipo",
+            "data-bs-toggle": "modal",
+            "data-bs-dismiss": "modal"
+        });
+        $("#errorValidacion").text("");
+        seguir = 1;
+    }
+    else {
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    if (nombre.val().length != 0) {
+        $("#nombre").attr({
+            "class": "form-control is-valid"
+        });
+    }
+    else {
+        $("#nombre").attr({
+            "class": "form-control is-invalid"
+        });
+    }
+    if (apellido.val().length != 0) {
+        $("#apellido").attr({
+            "class": "form-control is-valid"
+        });
+    }
+    else {
+        $("#apellido").attr({
+            "class": "form-control is-invalid"
+        });
+    }
+    if (dni.val().length != 0) {
+        $("#dni").attr({
+            "class": "form-control is-valid"
+        });
+    }
+    else {
+        $("#dni").attr({
+            "class": "form-control is-invalid"
+        });
+    }
+    if (email.val().length != 0) {
+        $("#email").attr({
+            "class": "form-control is-valid"
+        });
+    }
+    else {
+        $("#email").attr({
+            "class": "form-control is-invalid"
+        });
+    }
+    if (telefono.val().length != 0) {
+        $("#telefono").attr({
+            "class": "form-control is-valid"
+        });
+    }
+    else {
+        $("#telefono").attr({
+            "class": "form-control is-invalid"
+        });
+    }
+});
+
+$("#guardar").click(function () {
     if (!existeListaUsuarios()) {
         crearListaUsuarios();
     }
-    const nombre = document.getElementById("nombre");
-    const apellido = document.getElementById("apellido");
-    const dni = document.getElementById("dni");
-    const email = document.getElementById("email");
-    const telefono = document.getElementById("telefono");
-    
-    const nuevoUsuario = new Persona({
-        nombre: nombre.value,
-        apellido: apellido.value,
-        dni: dni.value,
-        telefono: telefono.value,
-        email: email.value
-    });
-    mostrarDatosPersonales();
-    cargarUsuario(nuevoUsuario);
-}
+    const nombre = $("#nombre");
+    const apellido = $("#apellido");
+    const dni = $("#dni");
+    const email = $("#email");
+    const telefono = $("#telefono");
 
-function clickYEnviar() {
+    const nuevoUsuario = new Persona({
+        nombre: nombre.val(),
+        apellido: apellido.val(),
+        dni: dni.val(),
+        telefono: telefono.val(),
+        email: email.val()
+    });
+    if (seguir == 1) {
+        mostrarDatosPersonales();
+        cargarUsuario(nuevoUsuario);
+    }
+});
+
+$("#enviar").click(function () {
     let equipo = obtenerDatosEquipo();
     obtenerDatosServicio();
     calculoValorServicios(equipo);
     contMet = metodoDeContacto();
     cuponDescuento(contMet);
     textoObservaciones();
-}
-
-
-
-const serviciosJuntos = [];
-let final = 0;
-let dct = null;
-const botonGuardar = document.getElementById("guardar");
-botonGuardar.addEventListener("click", clickGuardarYSiguiente);
-const botonEnviar = document.getElementById("enviar");
-botonEnviar.addEventListener("click", clickYEnviar);
+});
