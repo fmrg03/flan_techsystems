@@ -204,90 +204,106 @@ function textoObservaciones() {
     }
 }
 
-const serviciosJuntos = [];
-let final = 0;
-let dct = null;
-let seguir = 0;
-$(".unica").mouseenter(function () {
-    const nombre = $("#nombre");
-    const apellido = $("#apellido");
-    const dni = $("#dni");
-    const email = $("#email");
-    const telefono = $("#telefono");
-
+function agregarAlButtonModal() {
     if ((nombre.val().length != 0) && (apellido.val().length != 0) && (dni.val().length != 0) && (email.val().length != 0) && (telefono.val().length != 0)) {
-        $(".unica").attr({
+        $("#guardar").attr({
             "data-bs-target": "#toDatosEquipo",
             "data-bs-toggle": "modal",
-            "data-bs-dismiss": "modal"
+            "data-bs-dismiss": "modal",
         });
         $("#errorValidacion").text("");
         seguir = 1;
     }
-    else {
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
-    }
+}
+
+
+
+const serviciosJuntos = [];
+let final = 0;
+let dct = null;
+let seguir = 0;
+const nombre = $("#nombre");
+const apellido = $("#apellido");
+const dni = $("#dni");
+const email = $("#email");
+const telefono = $("#telefono");
+
+$("#nombre").blur(function () {
     if (nombre.val().length != 0) {
         $("#nombre").attr({
             "class": "form-control is-valid"
         });
+        agregarAlButtonModal();
     }
-    else {
+    else if (nombre.val().length == 0) {
         $("#nombre").attr({
             "class": "form-control is-invalid"
         });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
+});
+$("#apellido").blur(function () {
     if (apellido.val().length != 0) {
         $("#apellido").attr({
             "class": "form-control is-valid"
         });
+        agregarAlButtonModal();
     }
-    else {
+    else if (apellido.val().length == 0) {
         $("#apellido").attr({
             "class": "form-control is-invalid"
         });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
+});
+$("#dni").blur(function () {
     if (dni.val().length != 0) {
         $("#dni").attr({
             "class": "form-control is-valid"
         });
+        agregarAlButtonModal();
     }
-    else {
+    else if (dni.val().length == 0) {
         $("#dni").attr({
             "class": "form-control is-invalid"
         });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
+});
+$("#email").blur(function () {
     if (email.val().length != 0) {
         $("#email").attr({
             "class": "form-control is-valid"
         });
+        agregarAlButtonModal();
     }
-    else {
+    else if (email.val().length == 0) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
+});
+$("#telefono").blur(function () {
     if (telefono.val().length != 0) {
         $("#telefono").attr({
             "class": "form-control is-valid"
         });
+        agregarAlButtonModal();
     }
-    else {
+    else if (telefono.val().length == 0) {
         $("#telefono").attr({
             "class": "form-control is-invalid"
         });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
 });
+
 
 $("#guardar").click(function () {
     if (!existeListaUsuarios()) {
         crearListaUsuarios();
     }
-    const nombre = $("#nombre");
-    const apellido = $("#apellido");
-    const dni = $("#dni");
-    const email = $("#email");
-    const telefono = $("#telefono");
 
     const nuevoUsuario = new Persona({
         nombre: nombre.val(),
