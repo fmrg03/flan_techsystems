@@ -312,6 +312,37 @@ $("#guardar").click(function () {
         telefono: telefono.val(),
         email: email.val()
     });
+    if (nombre.val().length == 0) {
+        $("#nombre").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    if (apellido.val().length == 0) {
+        $("#apellido").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    if (dni.val().length == 0) {
+        $("#dni").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    if (telefono.val().length == 0) {
+        $("#telefono").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    if (email.val().length == 0) {
+        $("#email").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+    
     if (seguir == 1) {
         mostrarDatosPersonales();
         cargarUsuario(nuevoUsuario);
