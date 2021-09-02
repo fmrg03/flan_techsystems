@@ -319,7 +319,8 @@ footer {
 /*---------------------------------------------------------------*/
 #pageServices {
   margin-left: 1%;
-  margin-right: 1%; }
+  margin-right: 1%;
+  width: auto; }
 
 .servicesAll {
   font-size: 35px;
@@ -371,10 +372,11 @@ footer {
   border-top: 1px solid black; }
   #cuadroServ .cuadros {
     border: 2px solid black;
+    border-radius: 1.5%;
     margin: 50px 10px 0 10px;
     text-align: center;
-    height: 650px;
-    width: 300px; }
+    height: auto;
+    width: auto; }
   #cuadroServ span {
     display: block;
     font-weight: bold;
@@ -382,14 +384,23 @@ footer {
     padding-top: 20px;
     color: black; }
   #cuadroServ p {
-    font-size: 25px;
+    font-size: 28px;
     padding: 0px 20px; }
   #cuadroServ img {
     width: 120px;
     padding-top: 20px; }
-  #cuadroServ .cursor:hover {
-    background-color: #7e7e7e;
-    color: white; }
+
+#parrafoMantenimiento {
+  display: none; }
+
+#parrafoReparacionSoft {
+  display: none; }
+
+#parrafoReparacionHard {
+  display: none; }
+
+#parrafoRedes {
+  display: none; }
 
 .space {
   justify-content: space-around; }

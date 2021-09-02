@@ -270,14 +270,19 @@ $("#dni").blur(function () {
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
 });
+let arroba = null;
+let com = null;
 $("#email").blur(function () {
-    if (email.val().length != 0) {
+    arroba = email.val().includes("@");
+    com = email.val().includes(".com");
+
+    if (email.val().length != 0 && arroba == true && com == true) {
         $("#email").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (email.val().length == 0) {
+    else if (email.val().length == 0 || arroba == false || com == false) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
@@ -336,13 +341,13 @@ $("#guardar").click(function () {
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    if (email.val().length == 0) {
+    if (email.val().length == 0 || arroba == false || com == false) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    
+
     if (seguir == 1) {
         mostrarDatosPersonales();
         cargarUsuario(nuevoUsuario);
@@ -357,3 +362,78 @@ $("#enviar").click(function () {
     cuponDescuento(contMet);
     textoObservaciones();
 });
+
+
+//Animaciones para cuadros de Servicios
+$("#cuadro1").click(function () {
+    $("#cuadro2").fadeOut(200);
+    $("#cuadro3").fadeOut(200);
+    $("#cuadro4").fadeOut(200);
+    $("#cuadro1").css({
+        "color": "midnightblue",
+        "width": "auto"})
+    $("#parrafoMantenimiento").text("Si su equipo funciona correctamente, debe darle mantenimiento preventivo para mantener su computadora segura y funcionando correctamente. No espere una avería irreversible.")
+    $("#parrafoMantenimiento").toggle(500, function (){
+        $('html, body').animate({
+            scrollTop: $("#cuadro1").offset().top  
+        }, 500);
+        $("#cuadro2").fadeIn(200);
+        $("#cuadro3").fadeIn(200);
+        $("#cuadro4").fadeIn(200);
+    });
+
+})
+$("#cuadro2").click(function () {
+    $("#cuadro1").fadeOut(200);
+    $("#cuadro3").fadeOut(200);
+    $("#cuadro4").fadeOut(200);
+    $("#cuadro2").css({
+        "color": "midnightblue",
+        "width": "auto"})
+    $("#parrafoReparacionSoft").text("Damos mantenimiento correctivo completo a su(s) equipo(s), desde el respaldo, formateo e instalación de los programas necesarios para el correcto funcionamiento de una computadora. ¡Podemos ayudarlo con la avería de su software!")
+    $("#parrafoReparacionSoft").toggle(500, function () {
+        $("#cuadro1").fadeIn(200);
+        $('html, body').animate({
+            scrollTop: $("#cuadro2").offset().top
+        }, 500);
+        $("#cuadro3").fadeIn(200);
+        $("#cuadro4").fadeIn(200);
+    });
+
+})
+$("#cuadro3").click(function () {
+    $("#cuadro1").fadeOut(200);
+    $("#cuadro2").fadeOut(200);
+    $("#cuadro4").fadeOut(200);
+    $("#cuadro3").css({
+        "color": "midnightblue",
+        "width": "auto"})
+    $("#parrafoReparacionHard").text("Cambio de partes, reemplazo de discos, ampliación de su memoria RAM, limpieza de componentes en el cerebro de su máquina (CPU) y sus accesorios: como teclados, procesadores, tarjetas, entre otros. Contamos con el servicio que su hardware necesita.")
+    $("#parrafoReparacionHard").toggle(500, function () {
+        $("#cuadro1").fadeIn(200);
+        $("#cuadro2").fadeIn(200);
+        $('html, body').animate({
+            scrollTop: $("#cuadro3").offset().top  
+        }, 500);
+        $("#cuadro4").fadeIn(200);
+    });
+})
+$("#cuadro4").click(function () {
+    $("#cuadro1").fadeOut(200);
+    $("#cuadro3").fadeOut(200);
+    $("#cuadro2").fadeOut(200);
+    $("#cuadro4").css({
+        "color": "midnightblue",
+        "width": "auto"})
+    $("#parrafoRedes").text("¿Buscas complementar el servicio técnico de los ordenadores con un buen funcionamiento de la red? No detenga las actividades en su oficina debido a un problema con Internet. ¡Te podemos ayudar! Obtenga más información en nuestro servicio de instalación y mantenimiento de redes.")
+    $("#parrafoRedes").toggle(500, function () {
+        $("#cuadro1").fadeIn(200);
+        $("#cuadro3").fadeIn(200);
+        $("#cuadro2").fadeIn(200);
+        $('html, body').animate({
+            scrollTop: $("#cuadro4").offset().top  
+        }, 500);
+    });
+})
+
+

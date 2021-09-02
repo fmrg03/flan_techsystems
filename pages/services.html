@@ -114,31 +114,33 @@
                 <div class="modal-dialog">
                     <div class="modal-content" id="modal1">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Datos Personales</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>Datos Personales</strong></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Nombre y Apellido:</span>
+                                    <span class="input-group-text"><strong>Nombre y Apellido:</strong></span>
                                     <input type="text" aria-label="First name" class="form-control" id="nombre">
                                     <input type="text" aria-label="Last name" class="form-control" id="apellido">
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="e-mail">E-mail:</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                                        for="e-mail"><strong>E-mail:</strong></span>
                                     <input type="email" class="form-control" name="e-mail"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
                                         id="email">
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="phone">DNI:</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                                        for="phone"><strong>DNI:</strong></span>
                                     <input type="number" class="form-control" name="dni"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
                                         id="dni">
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"
-                                        for="phone">Teléfono:</span>
+                                        for="phone"><strong>Teléfono:</strong></span>
                                     <input type="number" class="form-control" name="phone"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
                                         id="telefono">
@@ -161,7 +163,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Datos del Servicio:</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>Datos del Servicio</strong></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -172,9 +174,9 @@
                             </legend>
                             <form id="form">
                                 <label class="input-group-text computerType mb-3 espacioCuadro"
-                                    id="inputGroup-sizing-sm" for="typeComputer">Tipo
-                                    de
-                                    Computadora:</label>
+                                    id="inputGroup-sizing-sm" for="typeComputer"><strong>Tipo
+                                        de
+                                        Computadora:</strong></label>
                                 <select class="form-select form-select-sm mb-3 espacioCuadro" name="typeComputer"
                                     aria-label=".form-select-sm example" id="tipoDeComputadora">
                                     <option selected>Selecciona</option>
@@ -182,7 +184,7 @@
                                     <option value="Desktop PC" id="tipoDesktop">Desktop PC</option>
                                 </select>
                                 <label class="input-group-text computerType mb-3 espacioCuadro"
-                                    id="inputGroup-sizing-sm" for="type">Servicios:</label>
+                                    id="inputGroup-sizing-sm" for="type"><strong>Servicios:</strong></label>
                                 <div class="form-check text-left">
                                     <input class="form-check-input" type="checkbox" name="servicio1" value="Formateo"
                                         id="checkFormateo">
@@ -212,8 +214,8 @@
                                     </label>
                                 </div>
                                 <label class="input-group-text contactMethod mb-3 espacioCuadro"
-                                    id="inputGroup-sizing-sm">Método de
-                                    Contacto:</label>
+                                    id="inputGroup-sizing-sm"><strong>Método de
+                                        Contacto:</strong></label>
                                 <div class="form-check text-left">
                                     <input type="radio" class="form-check-input" id="checkTelefono" name="radio-stacked"
                                         value="Telefónica">
@@ -225,8 +227,9 @@
                                     <label class="form-check-label" for="checkEmail">Email</label>
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="cupon">Ingrese Cupón
-                                        de Descuento (DCTO10, DCTO20, DCTO30):</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm" for="cupon"><strong>Ingrese
+                                            Cupón
+                                            de Descuento (DCTO10, DCTO20, DCTO30):</strong></span>
                                     <input type="text" class="form-control" name="cupon"
                                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
                                         id="cupon">
@@ -268,161 +271,155 @@
                     </div>
                 </div>
             </div>
-            <section id="remoteService" class="container-fluid rowPadding2">
-                <h3>También ofrecemos servicio de soporte técnico remoto</h3>
-                <div class="row rowPadding">
-                    <div class="col-sm-12 col-md-12 col-xxl-12 align-self-center text-center">
-                        <p>Desde la comodidad de tu hogar podemos solucionar el problema que surja.</p>
-                        <p>¿Qué estas esperando?</p>
-                        <button type="button" class="btn btn-dark"><a
-                                href="../pages/contact.html"><b>Contáctanos</b></a></button>
-                    </div>
+        </section>
+        <section id="remoteService" class="container-fluid rowPadding2">
+            <h3>También ofrecemos servicio de soporte técnico remoto</h3>
+            <div class="row rowPadding">
+                <div class="col-sm-12 col-md-12 col-xxl-12 align-self-center text-center">
+                    <p>Desde la comodidad de tu hogar podemos solucionar el problema que surja.</p>
+                    <p>¿Qué estas esperando?</p>
+                    <button type="button" class="btn btn-dark"><a
+                            href="../pages/contact.html"><b>Contáctanos</b></a></button>
                 </div>
-                <div class="row rowPadding">
-                    <div class="col-sm-12 col-md-12 col-xxl-12 align-self-center text-center">
-                        <img src="../media/remoteservice.jpg" class="rounded img-fluid" width="600x600"
-                            alt="remoteServ">
-                    </div>
+            </div>
+            <div class="row rowPadding">
+                <div class="col-sm-12 col-md-12 col-xxl-12 align-self-center text-center">
+                    <img src="../media/remoteservice.jpg" class="rounded img-fluid" width="600x600" alt="remoteServ">
                 </div>
-            </section>
-            <section id="cuadroServ" class="container-fluid text-center rowPadding2">
-                <div class="row rowPadding space">
-                    <div class="cuadros cursor col-sm-12 col-md-6 col-lg-6 col-xxl-3 align-self-center text-center">
-                        <img src="../media/mantpc.png" alt="mantPc">
-                        <span>Mantenimiento de PC y Notebook</span>
-                        <p>Si su equipo funciona correctamente, debe darle mantenimiento preventivo para mantener su
-                            computadora segura y funcionando correctamente. No espere una avería irreversible.</p>
-                    </div>
-                    <div class="cuadros cursor col-sm-12 col-md-6 col-lg-6 col-xxl-3 align-self-center text-center">
-                        <img src="../media/softwarerepair.png" alt="softwaRepair">
-                        <span>Reparación de Software</span>
-                        <p>Damos mantenimiento correctivo completo a su(s) equipo(s), desde el respaldo, formateo e
-                            instalación de los programas necesarios para el correcto funcionamiento de una computadora.
-                            ¡Podemos ayudarlo con la avería de su software!</p>
-                    </div>
-                    <div class="cuadros cursor col-sm-12 col-md-6 col-lg-6 col-xxl-3 align-self-center text-center">
-                        <img src="../media/hardrepair.png" alt="hardwareRepair">
-                        <span>Reparación de Hardware</span>
-                        <p>Cambio de partes, reemplazo de discos, ampliación de su memoria RAM, limpieza de componentes
-                            en
-                            el cerebro de su máquina (CPU) y sus accesorios: como teclados, procesadores, tarjetas,
-                            entre
-                            otros. Contamos con el servicio que su hardware necesita.</p>
-                    </div>
-                    <div class="cuadros cursor col-sm-12 col-md-6 col-lg-6 col-xxl-3 align-self-center text-center">
-                        <img src="../media/networkinst.png" alt="networkInstall">
-                        <span>Installation of Networks</span>
-                        <p>¿Buscas complementar el servicio técnico de los ordenadores con un buen funcionamiento de la
-                            red?
-                            No detenga las actividades en su oficina debido a un problema con Internet. ¡Te podemos
-                            ayudar!
-                            Obtenga más información en nuestro servicio de instalación y mantenimiento de redes.</p>
-                    </div>
+            </div>
+        </section>
+        <section id="cuadroServ" class="container-fluid text-center rowPadding2">
+            <h3 class="titlesSection">Conoce nuestros servicios</h3>
+            <h3 class="subtitleSection">Click ↓</h3>
+            <div class="row rowPadding space">
+                <div id="cuadro1"
+                    class="cuadros col-sm-12 col-md-12 col-lg-12 col-xxl-12 align-self-center text-center">
+                    <img src="../media/mantpc.png" alt="mantPc">
+                    <span>Mantenimiento de PC y Notebook</span>
+                    <p id="parrafoMantenimiento"></p>
                 </div>
-            </section>
-            <!--Section Suscribe-->
-            <section class="bg-light text-center">
-                <h2 class="titlesSection">Suscríbete para recibir noticias</h2>
-                <div class="container p-4 pb-0">
-                    <section>
-                        <form action="">
-                            <div class="row d-flex justify-content-center d-flex align-items-center">
-                                <div class="col-md-5 col-12">
-                                    <div class="form-outline mb-4">
-                                        <input type="email" id="form5Example2" class="form-control"
-                                            placeholder="email@ejemplo.com" />
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary btn-dark mb-4 align-items-center">
-                                        Suscríbete
-                                    </button>
+                <div id="cuadro2"
+                    class="cuadros cursor col-sm-12 col-md-12 col-lg-12 col-xxl-12 align-self-center text-center">
+                    <img src="../media/softwarerepair.png" alt="softwaRepair">
+                    <span>Reparación de Software</span>
+                    <p id="parrafoReparacionSoft"></p>
+                </div>
+                <div id="cuadro3"
+                    class="cuadros cursor col-sm-12 col-md-12 col-lg-12 col-xxl-12 align-self-center text-center">
+                    <img src="../media/hardrepair.png" alt="hardwareRepair">
+                    <span>Reparación de Hardware</span>
+                    <p id="parrafoReparacionHard"></p>
+                </div>
+                <div id="cuadro4"
+                    class="cuadros cursor col-sm-12 col-md-12 col-lg-12 col-xxl-12 align-self-center text-center">
+                    <img src="../media/networkinst.png" alt="networkInstall">
+                    <span>Instalación de Redes</span>
+                    <p id="parrafoRedes"></p>
+                </div>
+            </div>
+        </section>
+        <!--Section Suscribe-->
+        <section class="bg-light text-center">
+            <h2 class="titlesSection">Suscríbete para recibir noticias</h2>
+            <div class="container p-4 pb-0">
+                <section>
+                    <form action="">
+                        <div class="row d-flex justify-content-center d-flex align-items-center">
+                            <div class="col-md-5 col-12">
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="form5Example2" class="form-control"
+                                        placeholder="email@ejemplo.com" />
                                 </div>
                             </div>
-                        </form>
-                    </section>
-                </div>
-            </section>
-            <!--Section Footer-->
-            <footer class="bg-dark text-center text-white">
-                <div class="container p-4">
-                    <section>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-12 mb-4 mb-md-0 fut">
-                                <div class="socialFoot fut">
-                                    <b>F-Lan TechSystems</b>
-                                    Síguenos
-                                    <div class="RRSS">
-                                        <img src="../media/twitter_logo.png" width="50x50" alt="twitterIcon">
-                                        <a href="https://www.instagram.com/f_lantech/" target="_blank"><img
-                                                src="../media/instagram_logo.png" width="50x50" alt="instagramIcon"></a>
-                                        <img src="../media/facebook_logo.png" width="45" height="50" alt="facebookIcon">
-                                    </div>
-                                </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-dark mb-4 align-items-center">
+                                    Suscríbete
+                                </button>
                             </div>
-                            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                                <div class="contactFoot fut">
-                                    <b>Contacto</b>
-                                    <div class="rowFooter2">
-                                        <img class="imgPhone" src="../media/phonew.png" width="30" height="30"
-                                            alt="phoneIcon">
-                                        <div class="col">
-                                            <div class="rowFooter">
-                                                <a href="https://wa.link/qs4mej" target="_blank"><img
-                                                        src="../media/argentina.png" width="30x30" alt="argIcon"> +54 9
-                                                    11
-                                                    2678-1497 / </a>
-                                            </div>
-                                            <div>
-                                                <a href="https://wa.link/xk5l74" target="_blank"><img
-                                                        src="../media/venezuela.png" width="30x30" alt="venIcon"> +58
-                                                    424
-                                                    564-4299</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rowFooter2">
-                                        <img src="../media/mailw.png" width="30" height="30" alt="emailIcon">
-                                        <div>
-                                            <a href="mailto:f-lantechsystems@gmail.com">f-lantechsystems@gmail.com</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
-                                <div class="locationFoot fut">
-                                    <b>Ubicación</b>
-                                    <a href="https://www.google.com/maps/place/San+Isidro,+Provincia+de+Buenos+Aires/@-34.4720519,-58.5636093,13z/data=!3m1!4b1!4m5!3m4!1s0x95bcb03cd891437f:0xab3b49e671350275!8m2!3d-34.470829!4d-58.5286102"
-                                        target="_blank"><img src="../media/pinw.png" width="20x20" alt="locationIcon">
-                                        San
-                                        Isidro, Buenos
-                                        Aires,
-                                        Argentina</a>
-                                    <a href="https://www.google.com/maps/place/Cabudare+3023,+Lara,+Venezuela/@10.0173663,-69.2794369,13z/data=!3m1!4b1!4m5!3m4!1s0x8e875e72cce6bec1:0x6cfe29f5e986f259!8m2!3d10.0230722!4d-69.2507123"
-                                        target="_blank"><img src="../media/pinw.png" width="20x20" alt="locationIcon">
-                                        Cabudare,
-                                        Lara,
-                                        Venezuela</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+        <!--Section Footer-->
+        <footer class="bg-dark text-center text-white">
+            <div class="container p-4">
+                <section>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-12 mb-4 mb-md-0 fut">
+                            <div class="socialFoot fut">
+                                <b>F-Lan TechSystems</b>
+                                Síguenos
+                                <div class="RRSS">
+                                    <img src="../media/twitter_logo.png" width="50x50" alt="twitterIcon">
+                                    <a href="https://www.instagram.com/f_lantech/" target="_blank"><img
+                                            src="../media/instagram_logo.png" width="50x50" alt="instagramIcon"></a>
+                                    <img src="../media/facebook_logo.png" width="45" height="50" alt="facebookIcon">
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
-                <div aria-label="breadcrumb" class="idioma">
-                    <b>Idioma:</b>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page"><img src="../media/espana.png"
-                                alt="españa">
-                            Español</li>
-                        <li class="breadcrumb-item"><a href="./services_english.html"><img
-                                    src="../media/estados-unidos.png" alt="eeuu"> Inglés</a></li>
-                    </ol>
-                </div>
-                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2020 Copyright:
-                    <a href="https://flan-techsystems.com/">Flan-TechSystems.com</a>
-                </div>
-            </footer>
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                            <div class="contactFoot fut">
+                                <b>Contacto</b>
+                                <div class="rowFooter2">
+                                    <img class="imgPhone" src="../media/phonew.png" width="30" height="30"
+                                        alt="phoneIcon">
+                                    <div class="col">
+                                        <div class="rowFooter">
+                                            <a href="https://wa.link/qs4mej" target="_blank"><img
+                                                    src="../media/argentina.png" width="30x30" alt="argIcon"> +54 9
+                                                11
+                                                2678-1497 / </a>
+                                        </div>
+                                        <div>
+                                            <a href="https://wa.link/xk5l74" target="_blank"><img
+                                                    src="../media/venezuela.png" width="30x30" alt="venIcon"> +58
+                                                424
+                                                564-4299</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rowFooter2">
+                                    <img src="../media/mailw.png" width="30" height="30" alt="emailIcon">
+                                    <div>
+                                        <a href="mailto:f-lantechsystems@gmail.com">f-lantechsystems@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                            <div class="locationFoot fut">
+                                <b>Ubicación</b>
+                                <a href="https://www.google.com/maps/place/San+Isidro,+Provincia+de+Buenos+Aires/@-34.4720519,-58.5636093,13z/data=!3m1!4b1!4m5!3m4!1s0x95bcb03cd891437f:0xab3b49e671350275!8m2!3d-34.470829!4d-58.5286102"
+                                    target="_blank"><img src="../media/pinw.png" width="20x20" alt="locationIcon">
+                                    San
+                                    Isidro, Buenos
+                                    Aires,
+                                    Argentina</a>
+                                <a href="https://www.google.com/maps/place/Cabudare+3023,+Lara,+Venezuela/@10.0173663,-69.2794369,13z/data=!3m1!4b1!4m5!3m4!1s0x8e875e72cce6bec1:0x6cfe29f5e986f259!8m2!3d10.0230722!4d-69.2507123"
+                                    target="_blank"><img src="../media/pinw.png" width="20x20" alt="locationIcon">
+                                    Cabudare,
+                                    Lara,
+                                    Venezuela</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div aria-label="breadcrumb" class="idioma">
+                <b>Idioma:</b>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page"><img src="../media/espana.png" alt="españa">
+                        Español</li>
+                    <li class="breadcrumb-item"><a href="../services_english.html"><img src="../media/estados-unidos.png"
+                                alt="eeuu"> Inglés</a></li>
+                </ol>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2020 Copyright:
+                <a href="https://flan-techsystems.com/">Flan-TechSystems.com</a>
+            </div>
+        </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
