@@ -106,7 +106,7 @@
         </section>
         <section id="cotizacion" class="container-fluid align-self-center text-center">
             <h3>¿Deseas cotizar nuestros servicios?</h3>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#toDatosPersonales">
+            <button id="modalUnoCotizacion" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#toDatosPersonales">
                 <b>Hacé Click Aquí</b>
             </button>
             <div class="modal fade" id="toDatosPersonales" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -186,8 +186,8 @@
                                 <label class="input-group-text computerType mb-3 espacioCuadro"
                                     id="inputGroup-sizing-sm" for="type"><strong>Servicios:</strong></label>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input check" type="checkbox" name="servicio1" value="Formateo"
-                                        id="checkFormateo">
+                                    <input class="form-check-input check" type="checkbox" name="servicio1"
+                                        value="Formateo" id="checkFormateo">
                                     <label class="form-check-label" for="checkFormateo">
                                         Formateo
                                     </label>
@@ -207,8 +207,8 @@
                                     </label>
                                 </div>
                                 <div class="form-check text-left">
-                                    <input class="form-check-input check" type="checkbox" name="servicio4" value="Revisión"
-                                        id="checkRevision">
+                                    <input class="form-check-input check" type="checkbox" name="servicio4"
+                                        value="Revisión" id="checkRevision">
                                     <label class="form-check-label mb-3" for="checkRevision">
                                         Revisión
                                     </label>
@@ -262,10 +262,16 @@
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header justify-content-center">
+                        <div class="justify-content-center">
                             <h2 class="modal-title subtitleSection" id="staticBackdropLabel">Cotización</h2>
                         </div>
+                        <div class="modal-header">
+                            <h6 id="fechaCotizacion"></h6>
+                            <h6 id="horaCotizacion"></h6>
+                            <h6 id="cotizacionDolar"></h6>
+                        </div>
                         <div class="modal-body">
+                            <div></div>
                             <div id="datosPersonales"></div>
                             <div id="datosEquipo"></div>
                             <div id="datosServicios"></div>

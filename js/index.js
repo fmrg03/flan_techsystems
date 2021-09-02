@@ -80,30 +80,19 @@ class Servicio {
 }
 
 function obtenerDatosServicio() {
-    const checkFormat = $("#checkFormateo").prop('checked');
-    const checkProgram = $("#checkProgramas").prop('checked');
-    const checkVir = $("#checkVirus").prop('checked');
-    const checkRev = $("#checkRevision").prop('checked');
-    if (checkFormat == true) {
+    if ($("#checkFormateo").prop('checked') == true) {
         serviciosJuntos.push($("#checkFormateo").val());
     }
-    if (checkProgram == true) {
+    if ($("#checkProgramas").prop('checked') == true) {
         serviciosJuntos.push($("#checkProgramas").val());
     }
-    if (checkVir == true) {
+    if ($("#checkVirus").prop('checked') == true) {
         serviciosJuntos.push($("#checkVirus").val());
     }
-    if (checkRev == true) {
+    if ($("#checkRevision").prop('checked') == true) {
         serviciosJuntos.push($("#checkRevision").val());
     }
-    if ((checkFormat == true) || (checkProgram == true) || (checkVir == true) || (checkRev == true)) {
-        $("#errorSeleccionServicios").text("");
-    }
-    else {
-        $("#errorSeleccionServicios").text("Por Favor Seleccione al menos un Servicio");
-    }
 }
-
 function suma(n1) {
     final += n1;
 }
@@ -146,19 +135,11 @@ function obtenerDatosEquipo() {
 
 function metodoDeContacto() {
     let viaDeContacto = null;
-    const checkTel = $("#checkTelefono").prop('checked');
-    const checkMail = $("#checkEmail").prop('checked');
-    if (checkTel == true) {
+    if ($("#checkTelefono").prop('checked') == true) {
         viaDeContacto = $("#checkTelefono").val();
     }
-    if (checkMail == true) {
+    if ($("#checkEmail").prop('checked') == true) {
         viaDeContacto = $("#checkEmail").val();
-    }
-    if ((checkTel == false) && (checkMail == false)) {
-        $("#errorSeleccionContacto").text("Por Favor Seleccione un método de contacto");
-    }
-    else {
-        $("#errorSeleccionContacto").text("");
     }
     return viaDeContacto;
 }
@@ -194,11 +175,20 @@ class Cotizacion {
         return nombreCupon;
     }
     subtotal(nombreCupon, contacto) {
+        let enDolares = 0;
         if (dct != null) {
-            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ${nombreCupon} es: <strong>${dct}</strong> ARS</p>`);
+            enDolares = (dct/parseFloat(misDatos.casa.venta));
+            console.log(misDatos.casa.venta);
+            console.log(dct);
+            console.log(enDolares);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ${nombreCupon} es: <strong>${dct}</strong> ARS o <strong>${enDolares}</strong> USD</p>`);
         }
         else {
-            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido es: <strong>${this.totalPagar}</strong> ARS</p>`);
+            enDolares = (this.totalPagar/parseFloat(misDatos.casa.venta));
+            console.log(misDatos.casa.venta);
+            console.log(this.totalPagar);
+            console.log(enDolares);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido es: <strong>${this.totalPagar}</strong> ARS o <strong>${enDolares}</strong> USD</p>`);
         }
         $("#contactoMetodo").html(`<p>Te estaremos contactando vía ${contacto}... ¡Muchas gracias!</p>`);
     }
@@ -216,9 +206,6 @@ function textoObservaciones() {
     if (observaciones.length > 14) {
         $("#observacionesCliente").html(`<p><strong>Observaciones: </strong>${observaciones}</p>`);
         $("#errorObservaciones").text("");
-    }
-    else {
-        $("#errorObservaciones").text("Por Favor ingrese al menos 15 caracteres");
     }
 }
 
@@ -240,23 +227,12 @@ function agregarAlButtonModal2() {
     obtenerDatosServicio();
     let validarContacto = metodoDeContacto();
     textoObservaciones();
-    if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
-        $("#tipoDeComputadora").attr({
-            "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
-        });
-    }
-    else {
-        $("#tipoDeComputadora").attr({
-            "class": "form-select form-select-sm mb-3 espacioCuadro is-valid"
-        });
-    }
     if ((validarEquipo != "Selecciona") && (serviciosJuntos.length != 0) && (validarContacto != null)) {
         $("#enviar").attr({
             "data-bs-target": "#mostrarResultados",
             "data-bs-toggle": "modal",
             "data-bs-dismiss": "modal",
         });
-        $("#errorValidacion2").text("");
         seguir2 = 1;
     }
 }
@@ -268,6 +244,7 @@ let final = 0;
 let dct = null;
 let seguir = 0;
 let seguir2 = 0;
+let misDatos = null;
 const nombre = $("#nombre");
 const apellido = $("#apellido");
 const dni = $("#dni");
@@ -275,9 +252,8 @@ const email = $("#email");
 const telefono = $("#telefono");
 
 
-// Validaciones Formulario Cotizacion
+// Validaciones Formulario Cotizacion Modal 1
 $("#nombre").blur(function () {
-    console.log(isNaN(nombre.val()));
     if (nombre.val().length >= 4 && isNaN(nombre.val()) == true) {
         $("#nombre").attr({
             "class": "form-control is-valid"
@@ -354,8 +330,9 @@ $("#telefono").blur(function () {
 });
 
 
+// Validaciones Cotizacion Modal 2
 
-$("#tipoDeComputadora").blur(function () {
+$("#tipoDeComputadora").click(function () {
     if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
         $("#tipoDeComputadora").attr({
             "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
@@ -368,8 +345,26 @@ $("#tipoDeComputadora").blur(function () {
     }
 });
 
+$("#checkTelefono").click(function () {
+    if (($("#checkTelefono").prop('checked') == false)) {
+        $("#errorSeleccionContacto").text("Por Favor Seleccione un método de contacto");
+    }
+    else {
+        $("#errorSeleccionContacto").text("");
+        agregarAlButtonModal2();
+    }
+})
+$("#checkEmail").click(function () {
+    if (($("#checkEmail").prop('checked') == false)) {
+        $("#errorSeleccionContacto").text("Por Favor Seleccione un método de contacto");
+    }
+    else {
+        $("#errorSeleccionContacto").text("");
+        agregarAlButtonModal2();
+    }
+})
+
 $("#observaciones").blur(function () {
-    agregarAlButtonModal2();
     if ($("#observaciones").val().length < 14) {
         $("#observaciones").attr({
             "class": "form-control is-invalid"
@@ -381,8 +376,10 @@ $("#observaciones").blur(function () {
             "class": "form-control is-valid"
         });
         $("#errorObservaciones").text("");
+        agregarAlButtonModal2();
     }
 });
+
 $(".check").click(function () {
     const checkFormat = $("#checkFormateo").prop('checked');
     const checkProgram = $("#checkProgramas").prop('checked');
@@ -398,7 +395,26 @@ $(".check").click(function () {
     }
 });
 
-
+//Eventos Click Boton Modal Siguiente
+$("#modalUnoCotizacion").click(function (){
+    const URLGETDOLAR = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
+    $.get(URLGETDOLAR, function (respuesta, estado) {
+        if (estado === "success") {
+            misDatos = respuesta[1];
+            $("#cotizacionDolar").html(`<strong>${misDatos.casa.nombre}: </strong>${misDatos.casa.venta} ARS`)
+        }
+    });
+    const URLGETFECHA = 'http://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires'
+    $.get(URLGETFECHA, function (respuesta2, estado) {
+        if (estado === "success") {
+            var cadenaFecha = respuesta2.datetime.split("T");
+            var separaHora = cadenaFecha[1].split(".");
+            var horaFinal = separaHora[0].slice(0, 5);
+            $("#fechaCotizacion").html(`<strong>Fecha: </strong>${cadenaFecha[0]}`)
+            $("#horaCotizacion").html(`<strong>Hora: </strong>${horaFinal} hs`)
+        }
+    });
+});
 $("#guardar").click(function () {
     if (!existeListaUsuarios()) {
         crearListaUsuarios();
@@ -453,7 +469,40 @@ $("#guardar").click(function () {
 $("#enviar").click(function () {
 
     agregarAlButtonModal2();
-
+    if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
+        });
+    }
+    else {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-valid"
+        });
+    }
+    if (($("#checkFormateo").prop('checked') == true) || ($("#checkProgramas").prop('checked') == true) || ($("#checkVirus").prop('checked') == true) || ($("#checkRevision").prop('checked') == true)) {
+        $("#errorSeleccionServicios").text("");
+    }
+    else {
+        $("#errorSeleccionServicios").text("Por Favor Seleccione al menos un Servicio");
+    }
+    if (($("#checkTelefono").prop('checked') == false) && ($("#checkEmail").prop('checked') == false)) {
+        $("#errorSeleccionContacto").text("Por Favor Seleccione un método de contacto");
+    }
+    else {
+        $("#errorSeleccionContacto").text("");
+    }
+    if ($("#observaciones").val().length < 14) {
+        $("#observaciones").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorObservaciones").text("Por Favor ingrese al menos 15 caracteres");
+    }
+    else {
+        $("#observaciones").attr({
+            "class": "form-control is-valid"
+        });
+        $("#errorObservaciones").text("");
+    }
 
     if (seguir2 == 1) {
         serviciosJuntos.length = 0;
@@ -489,7 +538,7 @@ $("#cuadro1").click(function () {
         $("#cuadro4").fadeIn(200);
     });
 
-})
+});
 $("#cuadro2").click(function () {
     $("#cuadro1").fadeOut(200);
     $("#cuadro3").fadeOut(200);
@@ -508,7 +557,7 @@ $("#cuadro2").click(function () {
         $("#cuadro4").fadeIn(200);
     });
 
-})
+});
 $("#cuadro3").click(function () {
     $("#cuadro1").fadeOut(200);
     $("#cuadro2").fadeOut(200);
@@ -526,7 +575,7 @@ $("#cuadro3").click(function () {
         }, 500);
         $("#cuadro4").fadeIn(200);
     });
-})
+});
 $("#cuadro4").click(function () {
     $("#cuadro1").fadeOut(200);
     $("#cuadro3").fadeOut(200);
@@ -534,7 +583,7 @@ $("#cuadro4").click(function () {
     $("#cuadro4").css({
         "color": "midnightblue",
         "width": "auto"
-    })
+    });
     $("#parrafoRedes").text("¿Buscas complementar el servicio técnico de los ordenadores con un buen funcionamiento de la red? No detenga las actividades en su oficina debido a un problema con Internet. ¡Te podemos ayudar! Obtenga más información en nuestro servicio de instalación y mantenimiento de redes.")
     $("#parrafoRedes").toggle(500, function () {
         $("#cuadro1").fadeIn(200);
@@ -544,6 +593,4 @@ $("#cuadro4").click(function () {
             scrollTop: $("#cuadro4").offset().top
         }, 500);
     });
-})
-
-
+});
