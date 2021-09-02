@@ -218,7 +218,7 @@ function textoObservaciones() {
         $("#errorObservaciones").text("");
     }
     else {
-        $("#errorObservaciones").text("Por favor ingrese al menos 15 caracteres");
+        $("#errorObservaciones").text("Por Favor ingrese al menos 15 caracteres");
     }
 }
 
@@ -235,6 +235,7 @@ function agregarAlButtonModal() {
 }
 
 function agregarAlButtonModal2() {
+    serviciosJuntos.length = 0;
     let validarEquipo = obtenerDatosEquipo()
     obtenerDatosServicio();
     let validarContacto = metodoDeContacto();
@@ -276,31 +277,32 @@ const telefono = $("#telefono");
 
 // Validaciones Formulario Cotizacion
 $("#nombre").blur(function () {
-    if (nombre.val().length >= 4) {
+    console.log(isNaN(nombre.val()));
+    if (nombre.val().length >= 4 && isNaN(nombre.val()) == true) {
         $("#nombre").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (nombre.val().length < 4) {
+    else if ((nombre.val().length < 4) || (isNaN(nombre.val()) == false)) {
         $("#nombre").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 });
 $("#apellido").blur(function () {
-    if (apellido.val().length >= 4) {
+    if ((apellido.val().length >= 4) && (isNaN(apellido.val()) == true)) {
         $("#apellido").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (apellido.val().length < 4) {
+    else if ((apellido.val().length < 4) || (isNaN(apellido.val()) == false)) {
         $("#apellido").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 });
 $("#dni").blur(function () {
@@ -314,7 +316,7 @@ $("#dni").blur(function () {
         $("#dni").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 });
 let arroba = null;
@@ -333,7 +335,7 @@ $("#email").blur(function () {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 });
 $("#telefono").blur(function () {
@@ -347,14 +349,13 @@ $("#telefono").blur(function () {
         $("#telefono").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 });
 
 
 
 $("#tipoDeComputadora").blur(function () {
-    agregarAlButtonModal2();
     if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
         $("#tipoDeComputadora").attr({
             "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
@@ -373,13 +374,27 @@ $("#observaciones").blur(function () {
         $("#observaciones").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorObservaciones").text("Por favor ingrese al menos 15 caracteres");
+        $("#errorObservaciones").text("Por Favor ingrese al menos 15 caracteres");
     }
     else {
         $("#observaciones").attr({
             "class": "form-control is-valid"
         });
         $("#errorObservaciones").text("");
+    }
+});
+$(".check").click(function () {
+    const checkFormat = $("#checkFormateo").prop('checked');
+    const checkProgram = $("#checkProgramas").prop('checked');
+    const checkVir = $("#checkVirus").prop('checked');
+    const checkRev = $("#checkRevision").prop('checked');
+
+    if ((checkFormat == true) || (checkProgram == true) || (checkVir == true) || (checkRev == true)) {
+        $("#errorSeleccionServicios").text("");
+        agregarAlButtonModal2();
+    }
+    else {
+        $("#errorSeleccionServicios").text("Por Favor Seleccione al menos un Servicio");
     }
 });
 
@@ -400,31 +415,31 @@ $("#guardar").click(function () {
         $("#nombre").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
     if (apellido.val().length < 4) {
         $("#apellido").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
     if (dni.val().length != 8) {
         $("#dni").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
     if (telefono.val().length < 10) {
         $("#telefono").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
     if (email.val().length < 8 || arroba == false || com == false) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
-        $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+        $("#errorValidacion").text("Por Favor ingrese correctamente los campos");
     }
 
     if (seguir == 1) {
@@ -436,7 +451,6 @@ $("#guardar").click(function () {
 
 
 $("#enviar").click(function () {
-
 
     agregarAlButtonModal2();
 
