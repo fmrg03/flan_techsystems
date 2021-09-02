@@ -176,19 +176,23 @@ class Cotizacion {
     }
     subtotal(nombreCupon, contacto) {
         let enDolares = 0;
+        let totalDolares = null;
+        let finalTotal = null;
         if (dct != null) {
-            enDolares = (dct/parseFloat(misDatos.casa.venta));
-            console.log(misDatos.casa.venta);
-            console.log(dct);
-            console.log(enDolares);
-            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ${nombreCupon} es: <strong>${dct}</strong> ARS o <strong>${enDolares}</strong> USD</p>`);
+            descuentoTotal = dct.toString();
+            descuentoTotal = descuentoTotal.slice(0, 6)
+            enDolares = (dct / parseInt(misDatos.casa.venta));
+            totalDolares = enDolares.toString();
+            totalDolares = totalDolares.slice(0, 4);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido y el descuento por cupón aplicado de ${nombreCupon} es: <strong>${descuentoTotal}</strong> ARS o <strong>${totalDolares}</strong> USD</p>`);
         }
         else {
-            enDolares = (this.totalPagar/parseFloat(misDatos.casa.venta));
-            console.log(misDatos.casa.venta);
-            console.log(this.totalPagar);
-            console.log(enDolares);
-            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido es: <strong>${this.totalPagar}</strong> ARS o <strong>${enDolares}</strong> USD</p>`);
+            enDolares = (this.totalPagar / parseInt(misDatos.casa.venta));
+            finalTotal = this.totalPagar.toString();
+            finalTotal = finalTotal.slice(0, 6)
+            totalDolares = enDolares.toString();
+            totalDolares = totalDolares.slice(0, 4);
+            $("#costoServicio").html(`<p>El total a pagar con el IVA incluido es: <strong>${finalTotal}</strong> ARS o <strong>${totalDolares}</strong> USD</p>`);
         }
         $("#contactoMetodo").html(`<p>Te estaremos contactando vía ${contacto}... ¡Muchas gracias!</p>`);
     }
@@ -227,7 +231,7 @@ function agregarAlButtonModal2() {
     obtenerDatosServicio();
     let validarContacto = metodoDeContacto();
     textoObservaciones();
-    if ((validarEquipo != "Selecciona") && (serviciosJuntos.length != 0) && (validarContacto != null)) {
+    if ((validarEquipo != "Selecciona") && (serviciosJuntos.length != 0) && (validarContacto != null) && ($("#observaciones").val().length) > 14) {
         $("#enviar").attr({
             "data-bs-target": "#mostrarResultados",
             "data-bs-toggle": "modal",
@@ -396,7 +400,7 @@ $(".check").click(function () {
 });
 
 //Eventos Click Boton Modal Siguiente
-$("#modalUnoCotizacion").click(function (){
+$("#modalUnoCotizacion").click(function () {
     const URLGETDOLAR = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
     $.get(URLGETDOLAR, function (respuesta, estado) {
         if (estado === "success") {
