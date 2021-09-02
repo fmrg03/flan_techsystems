@@ -319,8 +319,7 @@ footer {
 /*---------------------------------------------------------------*/
 #pageServices {
   margin-left: 1%;
-  margin-right: 1%;
-  width: auto; }
+  margin-right: 1%; }
 
 .servicesAll {
   font-size: 35px;
@@ -401,6 +400,18 @@ footer {
 
 #parrafoRedes {
   display: none; }
+
+#errorSeleccionServicios {
+  color: red;
+  font-weight: bold; }
+
+#errorSeleccionContacto {
+  color: red;
+  font-weight: bold; }
+
+#errorObservaciones {
+  color: red;
+  font-weight: bold; }
 
 .space {
   justify-content: space-around; }

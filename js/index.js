@@ -80,17 +80,27 @@ class Servicio {
 }
 
 function obtenerDatosServicio() {
-    if ($("#checkFormateo").prop('checked') == true) {
+    const checkFormat = $("#checkFormateo").prop('checked');
+    const checkProgram = $("#checkProgramas").prop('checked');
+    const checkVir = $("#checkVirus").prop('checked');
+    const checkRev = $("#checkRevision").prop('checked');
+    if (checkFormat == true) {
         serviciosJuntos.push($("#checkFormateo").val());
     }
-    if ($("#checkProgramas").prop('checked') == true) {
+    if (checkProgram == true) {
         serviciosJuntos.push($("#checkProgramas").val());
     }
-    if ($("#checkVirus").prop('checked') == true) {
+    if (checkVir == true) {
         serviciosJuntos.push($("#checkVirus").val());
     }
-    if ($("#checkRevision").prop('checked') == true) {
+    if (checkRev == true) {
         serviciosJuntos.push($("#checkRevision").val());
+    }
+    if ((checkFormat == true) || (checkProgram == true) || (checkVir == true) || (checkRev == true)) {
+        $("#errorSeleccionServicios").text("");
+    }
+    else {
+        $("#errorSeleccionServicios").text("Por Favor Seleccione al menos un Servicio");
     }
 }
 
@@ -126,11 +136,7 @@ function calculoValorServicios(equipoAArreglar) {
         }
     }
     const parrafoDatosEquipo = $("#datosEquipo");
-    if (equipoAArreglar == "Selecciona") {
-        equipoAArreglar = " ";
-    }
-    parrafoDatosEquipo.html(`<p><strong>- Equipo: </strong>${equipoAArreglar}</p>
-<p><strong>- Servicios: </strong>${serviciosJuntos.join(", ")}</p>`);
+    parrafoDatosEquipo.html(`<p><strong>- Equipo: </strong>${equipoAArreglar}</p>`);
 }
 
 function obtenerDatosEquipo() {
@@ -140,11 +146,19 @@ function obtenerDatosEquipo() {
 
 function metodoDeContacto() {
     let viaDeContacto = null;
-    if ($("#checkTelefono").prop('checked') == true) {
+    const checkTel = $("#checkTelefono").prop('checked');
+    const checkMail = $("#checkEmail").prop('checked');
+    if (checkTel == true) {
         viaDeContacto = $("#checkTelefono").val();
     }
-    if ($("#checkEmail").prop('checked') == true) {
+    if (checkMail == true) {
         viaDeContacto = $("#checkEmail").val();
+    }
+    if ((checkTel == false) && (checkMail == false)) {
+        $("#errorSeleccionContacto").text("Por Favor Seleccione un método de contacto");
+    }
+    else {
+        $("#errorSeleccionContacto").text("");
     }
     return viaDeContacto;
 }
@@ -199,13 +213,17 @@ function cuponDescuento(contMet) {
 
 function textoObservaciones() {
     const observaciones = $("#observaciones").val();
-    if (observaciones.length != 0) {
+    if (observaciones.length > 14) {
         $("#observacionesCliente").html(`<p><strong>Observaciones: </strong>${observaciones}</p>`);
+        $("#errorObservaciones").text("");
+    }
+    else {
+        $("#errorObservaciones").text("Por favor ingrese al menos 15 caracteres");
     }
 }
 
 function agregarAlButtonModal() {
-    if ((nombre.val().length != 0) && (apellido.val().length != 0) && (dni.val().length != 0) && (email.val().length != 0) && (telefono.val().length != 0)) {
+    if ((nombre.val().length >= 4) && (apellido.val().length >= 4) && (dni.val().length == 8) && (email.val().length >= 8) && (arroba == true) && (com == true) && (telefono.val().length >= 10)) {
         $("#guardar").attr({
             "data-bs-target": "#toDatosEquipo",
             "data-bs-toggle": "modal",
@@ -216,26 +234,55 @@ function agregarAlButtonModal() {
     }
 }
 
+function agregarAlButtonModal2() {
+    let validarEquipo = obtenerDatosEquipo()
+    obtenerDatosServicio();
+    let validarContacto = metodoDeContacto();
+    textoObservaciones();
+    if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
+        });
+    }
+    else {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-valid"
+        });
+    }
+    if ((validarEquipo != "Selecciona") && (serviciosJuntos.length != 0) && (validarContacto != null)) {
+        $("#enviar").attr({
+            "data-bs-target": "#mostrarResultados",
+            "data-bs-toggle": "modal",
+            "data-bs-dismiss": "modal",
+        });
+        $("#errorValidacion2").text("");
+        seguir2 = 1;
+    }
+}
+
 
 
 const serviciosJuntos = [];
 let final = 0;
 let dct = null;
 let seguir = 0;
+let seguir2 = 0;
 const nombre = $("#nombre");
 const apellido = $("#apellido");
 const dni = $("#dni");
 const email = $("#email");
 const telefono = $("#telefono");
 
+
+// Validaciones Formulario Cotizacion
 $("#nombre").blur(function () {
-    if (nombre.val().length != 0) {
+    if (nombre.val().length >= 4) {
         $("#nombre").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (nombre.val().length == 0) {
+    else if (nombre.val().length < 4) {
         $("#nombre").attr({
             "class": "form-control is-invalid"
         });
@@ -243,13 +290,13 @@ $("#nombre").blur(function () {
     }
 });
 $("#apellido").blur(function () {
-    if (apellido.val().length != 0) {
+    if (apellido.val().length >= 4) {
         $("#apellido").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (apellido.val().length == 0) {
+    else if (apellido.val().length < 4) {
         $("#apellido").attr({
             "class": "form-control is-invalid"
         });
@@ -257,13 +304,13 @@ $("#apellido").blur(function () {
     }
 });
 $("#dni").blur(function () {
-    if (dni.val().length != 0) {
+    if (dni.val().length == 8) {
         $("#dni").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (dni.val().length == 0) {
+    else if (dni.val().length != 8) {
         $("#dni").attr({
             "class": "form-control is-invalid"
         });
@@ -276,13 +323,13 @@ $("#email").blur(function () {
     arroba = email.val().includes("@");
     com = email.val().includes(".com");
 
-    if (email.val().length != 0 && arroba == true && com == true) {
+    if (email.val().length >= 8 && arroba == true && com == true) {
         $("#email").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (email.val().length == 0 || arroba == false || com == false) {
+    else if (email.val().length < 8 || arroba == false || com == false) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
@@ -290,17 +337,49 @@ $("#email").blur(function () {
     }
 });
 $("#telefono").blur(function () {
-    if (telefono.val().length != 0) {
+    if (telefono.val().length >= 10) {
         $("#telefono").attr({
             "class": "form-control is-valid"
         });
         agregarAlButtonModal();
     }
-    else if (telefono.val().length == 0) {
+    else if (telefono.val().length < 10) {
         $("#telefono").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
+    }
+});
+
+
+
+$("#tipoDeComputadora").blur(function () {
+    agregarAlButtonModal2();
+    if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-invalid"
+        });
+    }
+    else {
+        $("#tipoDeComputadora").attr({
+            "class": "form-select form-select-sm mb-3 espacioCuadro is-valid"
+        });
+    }
+});
+
+$("#observaciones").blur(function () {
+    agregarAlButtonModal2();
+    if ($("#observaciones").val().length < 14) {
+        $("#observaciones").attr({
+            "class": "form-control is-invalid"
+        });
+        $("#errorObservaciones").text("Por favor ingrese al menos 15 caracteres");
+    }
+    else {
+        $("#observaciones").attr({
+            "class": "form-control is-valid"
+        });
+        $("#errorObservaciones").text("");
     }
 });
 
@@ -317,31 +396,31 @@ $("#guardar").click(function () {
         telefono: telefono.val(),
         email: email.val()
     });
-    if (nombre.val().length == 0) {
+    if (nombre.val().length < 4) {
         $("#nombre").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    if (apellido.val().length == 0) {
+    if (apellido.val().length < 4) {
         $("#apellido").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    if (dni.val().length == 0) {
+    if (dni.val().length != 8) {
         $("#dni").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    if (telefono.val().length == 0) {
+    if (telefono.val().length < 10) {
         $("#telefono").attr({
             "class": "form-control is-invalid"
         });
         $("#errorValidacion").text("Por favor ingrese correctamente los campos");
     }
-    if (email.val().length == 0 || arroba == false || com == false) {
+    if (email.val().length < 8 || arroba == false || com == false) {
         $("#email").attr({
             "class": "form-control is-invalid"
         });
@@ -354,13 +433,26 @@ $("#guardar").click(function () {
     }
 });
 
+
+
 $("#enviar").click(function () {
-    let equipo = obtenerDatosEquipo();
-    obtenerDatosServicio();
-    calculoValorServicios(equipo);
-    contMet = metodoDeContacto();
-    cuponDescuento(contMet);
-    textoObservaciones();
+
+
+    agregarAlButtonModal2();
+
+
+    if (seguir2 == 1) {
+        serviciosJuntos.length = 0;
+        final = 0;
+        let equipo = obtenerDatosEquipo();
+        obtenerDatosServicio();
+        calculoValorServicios(equipo);
+        const parrafoDatosServicios = $("#datosServicios");
+        parrafoDatosServicios.html(`<p><strong>- Servicios: </strong>${serviciosJuntos.join(", ")}</p>`);
+        contMet = metodoDeContacto();
+        cuponDescuento(contMet);
+        textoObservaciones();
+    }
 });
 
 
@@ -371,11 +463,12 @@ $("#cuadro1").click(function () {
     $("#cuadro4").fadeOut(200);
     $("#cuadro1").css({
         "color": "midnightblue",
-        "width": "auto"})
+        "width": "auto"
+    })
     $("#parrafoMantenimiento").text("Si su equipo funciona correctamente, debe darle mantenimiento preventivo para mantener su computadora segura y funcionando correctamente. No espere una avería irreversible.")
-    $("#parrafoMantenimiento").toggle(500, function (){
+    $("#parrafoMantenimiento").toggle(500, function () {
         $('html, body').animate({
-            scrollTop: $("#cuadro1").offset().top  
+            scrollTop: $("#cuadro1").offset().top
         }, 500);
         $("#cuadro2").fadeIn(200);
         $("#cuadro3").fadeIn(200);
@@ -389,7 +482,8 @@ $("#cuadro2").click(function () {
     $("#cuadro4").fadeOut(200);
     $("#cuadro2").css({
         "color": "midnightblue",
-        "width": "auto"})
+        "width": "auto"
+    })
     $("#parrafoReparacionSoft").text("Damos mantenimiento correctivo completo a su(s) equipo(s), desde el respaldo, formateo e instalación de los programas necesarios para el correcto funcionamiento de una computadora. ¡Podemos ayudarlo con la avería de su software!")
     $("#parrafoReparacionSoft").toggle(500, function () {
         $("#cuadro1").fadeIn(200);
@@ -407,13 +501,14 @@ $("#cuadro3").click(function () {
     $("#cuadro4").fadeOut(200);
     $("#cuadro3").css({
         "color": "midnightblue",
-        "width": "auto"})
+        "width": "auto"
+    })
     $("#parrafoReparacionHard").text("Cambio de partes, reemplazo de discos, ampliación de su memoria RAM, limpieza de componentes en el cerebro de su máquina (CPU) y sus accesorios: como teclados, procesadores, tarjetas, entre otros. Contamos con el servicio que su hardware necesita.")
     $("#parrafoReparacionHard").toggle(500, function () {
         $("#cuadro1").fadeIn(200);
         $("#cuadro2").fadeIn(200);
         $('html, body').animate({
-            scrollTop: $("#cuadro3").offset().top  
+            scrollTop: $("#cuadro3").offset().top
         }, 500);
         $("#cuadro4").fadeIn(200);
     });
@@ -424,14 +519,15 @@ $("#cuadro4").click(function () {
     $("#cuadro2").fadeOut(200);
     $("#cuadro4").css({
         "color": "midnightblue",
-        "width": "auto"})
+        "width": "auto"
+    })
     $("#parrafoRedes").text("¿Buscas complementar el servicio técnico de los ordenadores con un buen funcionamiento de la red? No detenga las actividades en su oficina debido a un problema con Internet. ¡Te podemos ayudar! Obtenga más información en nuestro servicio de instalación y mantenimiento de redes.")
     $("#parrafoRedes").toggle(500, function () {
         $("#cuadro1").fadeIn(200);
         $("#cuadro3").fadeIn(200);
         $("#cuadro2").fadeIn(200);
         $('html, body').animate({
-            scrollTop: $("#cuadro4").offset().top  
+            scrollTop: $("#cuadro4").offset().top
         }, 500);
     });
 })

@@ -213,6 +213,9 @@
                                         Revisión
                                     </label>
                                 </div>
+                                <div>
+                                    <p id="errorSeleccionServicios"></p>
+                                </div>
                                 <label class="input-group-text contactMethod mb-3 espacioCuadro"
                                     id="inputGroup-sizing-sm"><strong>Método de
                                         Contacto:</strong></label>
@@ -225,6 +228,9 @@
                                     <input type="radio" class="form-check-input" id="checkEmail" name="radio-stacked"
                                         value="Email">
                                     <label class="form-check-label" for="checkEmail">Email</label>
+                                </div>
+                                <div>
+                                    <p id="errorSeleccionContacto"></p>
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm" for="cupon"><strong>Ingrese
@@ -239,11 +245,12 @@
                                         style="height: 100px"></textarea>
                                     <label for="textObs">Observaciones</label>
                                 </div>
+                                <div>
+                                    <p id="errorObservaciones"></p>
+                                </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="reset" name="reset">Limpiar</button>
-                                    <button class="btn btn-dark" data-bs-target="#mostrarResultados" name="send"
-                                        id="enviar" data-bs-toggle="modal" data-bs-dismiss="modal"
-                                        type="reset">Enviar</button>
+                                    <button class="btn btn-dark" name="send" id="enviar" type="button">Enviar</button>
                                 </div>
                             </form>
                         </div>
@@ -261,6 +268,7 @@
                         <div class="modal-body">
                             <div id="datosPersonales"></div>
                             <div id="datosEquipo"></div>
+                            <div id="datosServicios"></div>
                             <div id="costoServicio"></div>
                             <div id="observacionesCliente"></div>
                             <div id="contactoMetodo"></div>
@@ -411,8 +419,8 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page"><img src="../media/espana.png" alt="españa">
                         Español</li>
-                    <li class="breadcrumb-item"><a href="../services_english.html"><img src="../media/estados-unidos.png"
-                                alt="eeuu"> Inglés</a></li>
+                    <li class="breadcrumb-item"><a href="../services_english.html"><img
+                                src="../media/estados-unidos.png" alt="eeuu"> Inglés</a></li>
                 </ol>
             </div>
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
