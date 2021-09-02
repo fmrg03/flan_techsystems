@@ -241,8 +241,6 @@ function agregarAlButtonModal2() {
     }
 }
 
-
-
 const serviciosJuntos = [];
 let final = 0;
 let dct = null;
