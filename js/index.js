@@ -93,6 +93,7 @@ function obtenerDatosServicio() {
         serviciosJuntos.push($("#checkRevision").val());
     }
 }
+
 function suma(n1) {
     final += n1;
 }
@@ -332,9 +333,7 @@ $("#telefono").blur(function () {
     }
 });
 
-
 // Validaciones Cotizacion Modal 2
-
 $("#tipoDeComputadora").click(function () {
     if ($("#tipoDeComputadora option:selected").val() == "Selecciona") {
         $("#tipoDeComputadora").attr({
@@ -467,8 +466,6 @@ $("#guardar").click(function () {
     }
 });
 
-
-
 $("#enviar").click(function () {
 
     agregarAlButtonModal2();
@@ -520,7 +517,6 @@ $("#enviar").click(function () {
         textoObservaciones();
     }
 });
-
 
 //Animaciones para cuadros de Servicios
 $("#cuadro1").click(function () {
