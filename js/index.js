@@ -176,6 +176,7 @@ class Cotizacion {
     }
     subtotal(nombreCupon, contacto) {
         let enDolares = 0;
+        let descuentoTotal = null;
         let totalDolares = null;
         let finalTotal = null;
         if (dct != null) {
