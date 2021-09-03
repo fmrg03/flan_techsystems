@@ -13,6 +13,7 @@ The Folders:
 - css: where the style sheet (style.css) is found in which all the web styles are applied and another file where the web is normalized (normalize.css).
 - scss: there are all the .scss files that are used to apply SASS to the project and thus better order the stylesheet (style.css).
 - pages: where all the project pages are found (About Us, Services, Galery and Contact), except "index.html" (Home Page).
+- js: contain the javascript file.
 
 The files:
 - index.html
