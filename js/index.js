@@ -406,7 +406,7 @@ $("#modalUnoCotizacion").click(function () {
             $("#cotizacionDolar").html(`<strong>${misDatos.casa.nombre}: </strong>${misDatos.casa.venta} ARS`)
         }
     });
-    const URLGETFECHA = 'https://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires'
+    const URLGETFECHA = 'https://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires/data/180/'
     $.get(URLGETFECHA, function (respuesta2, estado) {
         if (estado === "success") {
             var cadenaFecha = respuesta2.datetime.split("T");
